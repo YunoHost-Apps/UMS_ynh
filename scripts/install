@@ -164,7 +164,7 @@ ynh_script_progression --message="Configuring NGINX web server..." --time --weig
 ### `ynh_add_nginx_config` will use the file conf/nginx.conf
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_add_nginx_config "port_web"
 
 
 #=================================================
@@ -218,9 +218,9 @@ ynh_add_systemd_config
 ### ynh_replace_string --match_string="match_string" --replace_string="replace_string" --target_file="$final_path/some_config_file"
 ### ynh_store_file_checksum --file="$final_path/some_config_file"
 mkdir -p "/home/$app/.config/UMS"
-ynh_add_config --template="UMS.conf" --destination="/home/$app/.config/UMS/"
-ynh_add_config --template="WEB.conf" --destination="/home/$app/.config/UMS/"
-ynh_add_config --template="VirtualFolders.conf" --destination="/home/$app/.config/UMS/"
+ynh_add_config --template="UMS.conf.default" --destination="/home/$app/.config/UMS/UMS.conf"
+ynh_add_config --template="WEB.conf.default" --destination="/home/$app/.config/UMS/WEB.conf"
+ynh_add_config --template="VirtualFolders.conf.default" --destination="/home/$app/.config/UMS/VirtualFolders.conf"
 chown -R $app:$app "/home/$app/.config"
 chmod -R  700 "/home/$app/.config"
 #chmod 600 "/home/$app/.config/UMS/*"
