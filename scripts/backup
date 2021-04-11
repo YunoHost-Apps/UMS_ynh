@@ -21,6 +21,10 @@ ynh_clean_setup () {
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
 
+ynh_print_warn --message="This script will only backup the app, no media will be saved"
+ynh_print_warn --message="To save your media, please use a backup tool such as borg"
+
+
 #=================================================
 # LOAD SETTINGS
 #=================================================
@@ -30,18 +34,11 @@ app=$YNH_APP_INSTANCE_NAME
 
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 domain=$(ynh_app_setting_get --app=$app --key=domain)
-db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-phpversion=$(ynh_app_setting_get --app=$app --key=phpversion)
 
 #=================================================
 # DECLARE DATA AND CONF FILES TO BACKUP
 #=================================================
 ynh_print_info --message="Declaring files to be backed up..."
-
-### N.B. : the following 'ynh_backup' calls are only a *declaration* of what needs
-### to be backuped and not an actual copy of any file. The actual backup that
-### creates and fill the archive with the files happens in the core after this
-### script is called. Hence ynh_backups calls takes basically 0 seconds to run.
 
 #=================================================
 # BACKUP THE APP MAIN DIR
@@ -56,17 +53,11 @@ ynh_backup --src_path="$final_path"
 ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
 #=================================================
-# BACKUP THE PHP-FPM CONFIGURATION
-#=================================================
-
-ynh_backup --src_path="/etc/php/$phpversion/fpm/pool.d/$app.conf"
-
-#=================================================
 # BACKUP FAIL2BAN CONFIGURATION
 #=================================================
 
-ynh_backup --src_path="/etc/fail2ban/jail.d/$app.conf"
-ynh_backup --src_path="/etc/fail2ban/filter.d/$app.conf"
+#ynh_backup --src_path="/etc/fail2ban/jail.d/$app.conf"
+#ynh_backup --src_path="/etc/fail2ban/filter.d/$app.conf"
 
 #=================================================
 # SPECIFIC BACKUP
@@ -86,19 +77,7 @@ ynh_backup --src_path="/etc/systemd/system/$app.service"
 # BACKUP VARIOUS FILES
 #=================================================
 
-ynh_backup --src_path="/etc/cron.d/$app"
-
-ynh_backup --src_path="/etc/$app/"
-
-#=================================================
-# BACKUP THE MYSQL DATABASE
-#=================================================
-ynh_print_info --message="Backing up the MySQL database..."
-
-### (However, things like MySQL dumps *do* take some time to run, though the
-### copy of the generated dump to the archive still happens later)
-
-ynh_mysql_dump_db --database="$db_name" > db.sql
+ynh_backup --src_path="/home/$app/"
 
 #=================================================
 # END OF SCRIPT
