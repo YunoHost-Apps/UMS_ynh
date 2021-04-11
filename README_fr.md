@@ -1,13 +1,13 @@
-# Universal Media Server (UMS) pour YunoHost
+# Universal Media Server (ums) pour YunoHost
 
 **WORK IN PROGRESS : Le package n'est pas stable ni fonctionnel actuellement, aucune garantie de fonctionnement, d'installation sans souci ni d'ailleurs de désinstallation sans soucis**
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/UMS.svg)](https://dash.yunohost.org/appci/app/UMS) ![](https://ci-apps.yunohost.org/ci/badges/UMS.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/UMS.maintain.svg)  
-[![Installer UMS avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=UMS)
+[![Niveau d'intégration](https://dash.yunohost.org/integration/ums.svg)](https://dash.yunohost.org/appci/app/ums) ![](https://ci-apps.yunohost.org/ci/badges/ums.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/ums.maintain.svg)  
+[![Installer ums avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=ums)
 
 *[Read this readme in english.](./README.md)* 
 
-> *Ce package vous permet d'installer UMS rapidement et simplement sur un serveur YunoHost.  
+> *Ce package vous permet d'installer ums rapidement et simplement sur un serveur YunoHost.  
 Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install) pour apprendre comment l'installer.*
 
 ## Vue d'ensemble
@@ -43,8 +43,8 @@ Comment configurer cette application : via le panneau d'administration, un fichi
 
 **Développement en cours sur x86_64. Aucun tests effectués encore sur d'autres architectures**
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/UMS.svg)](https://ci-apps.yunohost.org/ci/apps/UMS/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/UMS.svg)](https://ci-apps-arm.yunohost.org/ci/apps/UMS/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/ums.svg)](https://ci-apps.yunohost.org/ci/apps/ums/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/ums.svg)](https://ci-apps-arm.yunohost.org/ci/apps/ums/)
 
 ## Limitations
 
@@ -64,7 +64,7 @@ https://yunohost.org/packaging_apps
 
 ## Liens
 
- * Signaler un bug : https://github.com/YunoHost-Apps/UMS_ynh/issues
+ * Signaler un bug : https://github.com/YunoHost-Apps/ums_ynh/issues
  * Site de l'application : Lien vers le site officiel de cette application.
  * Dépôt de l'application principale : Lien vers le dépôt officiel de l'application principale.
  * Site web YunoHost : https://yunohost.org/
@@ -74,11 +74,11 @@ https://yunohost.org/packaging_apps
 ## Informations pour les développeurs
 
 **Seulement si vous voulez utiliser une branche de test pour le codage, au lieu de fusionner directement dans la banche principale.**
-Merci de faire vos pull request sur la [branche testing](https://github.com/YunoHost-Apps/UMS_ynh/tree/testing).
+Merci de faire vos pull request sur la [branche testing](https://github.com/YunoHost-Apps/ums_ynh/tree/testing).
 
 Pour essayer la branche testing, procédez comme suit.
 ```
-sudo yunohost app install https://github.com/YunoHost-Apps/UMS_ynh/tree/testing --debug
+sudo yunohost app install https://github.com/YunoHost-Apps/ums_ynh/tree/testing --debug
 ou
-sudo yunohost app upgrade UMS -u https://github.com/YunoHost-Apps/UMS_ynh/tree/testing --debug
+sudo yunohost app upgrade ums -u https://github.com/YunoHost-Apps/ums_ynh/tree/testing --debug
 ```
