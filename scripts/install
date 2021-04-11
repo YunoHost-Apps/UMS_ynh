@@ -29,6 +29,7 @@ path_url=/
 is_public=$YNH_APP_ARG_IS_PUBLIC
 vlc_required=$YNH_APP_ARG_VLC
 
+
 app=$YNH_APP_INSTANCE_NAME
 
 if [ "$vlc_required" -eq 1 ] ; then
@@ -53,6 +54,8 @@ ynh_script_progression --message="Storing installation settings..." --time --wei
 
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
+#will be used when restoring
+ynh_app_setting_set --app=$app --key=vlc --value=$vlc_required
 
 #=================================================
 # STANDARD MODIFICATIONS
