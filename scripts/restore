@@ -123,7 +123,7 @@ systemctl enable $app.service --quiet
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --time --weight=1
 
-yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server." --log="/var/log/$app/$app.log"
+yunohost service add $app --description=A DLNA, UPnP and HTTP(S) Media Server. --log=/var/log/$app/$app.log --needs_exposed_ports $port_web $port_rend
 
 #=================================================
 # START SYSTEMD SERVICE

@@ -30,7 +30,11 @@
             {
                 "name": "is_public",
                 "type": "boolean",
-                "default": true
+                "default": true,
+                "help": {
+                  "en" : "Everybody will be able to access your media on the internet without connecting to Yunohost",
+                  "fr" : "Tout le monde pourra voir vos media sans se connecter à Yunohost"
+                }
             },
             {
                 "name":"vlc",
