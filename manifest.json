@@ -44,8 +44,8 @@
                    "fr" : "Voulez vous installer vlc? Cela peut etre utile pour streamer du contenu web"
                },
                "help": {
-                 "en": "This will use approx 600GB more and will install a LOT of dependencies",
-                 "fr": "Cela va utiliser environ 600GB supplémentaires et installera BEAUCOUP de dépendances"
+                 "en": "This will use approx 600GB more and will install a LOT of dependencies - NOT RECOMMENDED",
+                 "fr": "Cela va utiliser environ 600GB supplémentaires et installera BEAUCOUP de dépendances - NON RECOMMANDE"
                }
             }
         ]
