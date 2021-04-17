@@ -1,0 +1,53 @@
+{
+    "name": "Universal Media Server",
+    "id": "ums",
+    "packaging_format": 1,
+    "description": {
+        "en": "A DLNA, UPnP and HTTP(S) Media Server",
+        "fr": "Un Serveur Multimedia DLNA, UPnP et HTTP(S)"
+    },
+    "version": "10.4.1~ynh1",
+    "url": "www.universalmediaserver.com",
+    "license": "GPL-2.0-or-later",
+    "maintainer": {
+        "name": "Krakinou",
+        "email": "misterl56@hotmail.com"
+    },
+    "requirements": {
+        "yunohost": ">= 4.1.7"
+    },
+    "multi_instance": false,
+    "services": [
+        "nginx"
+    ],
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "type": "domain",
+                "example": "example.com"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "default": true,
+                "help": {
+                  "en" : "Everybody will be able to access your media on the internet without connecting to Yunohost",
+                  "fr" : "Tout le monde pourra voir vos media sans se connecter à Yunohost"
+                }
+            },
+            {
+                "name":"vlc",
+               "type": "boolean",
+               "ask": {
+                   "en" : "Do you want to install vlc? It may be useful for web content streaming",
+                   "fr" : "Voulez vous installer vlc? Cela peut etre utile pour streamer du contenu web"
+               },
+               "help": {
+                 "en": "This will use approx 600GB more and will install a LOT of dependencies - NOT RECOMMENDED",
+                 "fr": "Cela va utiliser environ 600GB supplémentaires et installera BEAUCOUP de dépendances - NON RECOMMANDE"
+               }
+            }
+        ]
+    }
+}
