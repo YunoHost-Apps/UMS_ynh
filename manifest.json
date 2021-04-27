@@ -1,6 +1,6 @@
 {
     "name": "Universal Media Server",
-    "id": "UMS",
+    "id": "ums",
     "packaging_format": 1,
     "description": {
         "en": "A DLNA, UPnP and HTTP(S) Media Server",
