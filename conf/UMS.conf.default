@@ -1652,7 +1652,7 @@ logging_logfile_name =
 # Please note: If UMS is started in "forced" TRACE mode, buffering will
 # be disabled regardless of this setting.
 # Default: false
-logging_buffered =
+logging_buffered = true
 
 # Logging Filter Console
 # ----------------------
