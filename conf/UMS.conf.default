@@ -1626,7 +1626,7 @@ search_recurse_depth=
 # ALL, TRACE, DEBUG, INFO, WARN, ERROR or OFF
 # This property can also be set from the 'Logs' tab in the gui.
 # Default: "DEBUG"
-log_level = 
+log_level = INFO
 
 # Logfile name
 # ------------
