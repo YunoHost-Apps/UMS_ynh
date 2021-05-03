@@ -38,7 +38,7 @@
 # -----------
 # The server name is displayed in the renderer before the profile name.
 # Default: "Universal Media Server"
-server_name =
+server_name =__NAME__
 
 # Append profile name
 # -------------------
@@ -143,7 +143,7 @@ single_instance =
 # E.g. network_interface = Intel(R) Dual Band Wireless-AC 3160
 # NOTE: Do not change it directly here but use the selector in the UMS GUI.
 # Default: "", which means UMS will automatically select a network interface.
-network_interface =
+network_interface =__INTERFACE__
 
 # Force IP of the server
 # ----------------------
@@ -157,7 +157,7 @@ hostname =
 # Sets the port UMS will listen on; usually should not need to be set unless
 # another service has already grabbed the port.
 # Default: "", which means UMS will automatically use port 5001.
-port =
+port =__PORT_REND__
 
 # Use an IP filter (whitelist)
 # ----------------------------
