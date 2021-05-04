@@ -38,7 +38,7 @@
 # -----------
 # The server name is displayed in the renderer before the profile name.
 # Default: "Universal Media Server"
-server_name =__NAME__
+server_name =__SERVER_NAME__
 
 # Append profile name
 # -------------------

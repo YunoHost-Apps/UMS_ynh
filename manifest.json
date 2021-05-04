@@ -37,7 +37,7 @@
                 }
             },
             {
-                "name":"name",
+                "name":"server_name",
                 "type":"string",
                 "example":"MyUMS",
                 "default": "UniversalMediaServer",
