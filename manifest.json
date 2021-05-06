@@ -25,7 +25,11 @@
             {
                 "name": "domain",
                 "type": "domain",
-                "example": "example.com"
+                "example": "example.com",
+                "help": {
+                    "en": "UMS require its own subdomain",
+                    "fr": "UMS a besoin de son propre sous-domaine"
+                    }
             },
             {
                 "name": "is_public",
