@@ -27,14 +27,12 @@ ynh_abort_if_errors
 domain=$YNH_APP_ARG_DOMAIN
 path_url=/
 is_public=$YNH_APP_ARG_IS_PUBLIC
-vlc_required=$YNH_APP_ARG_VLC
+server_name=$YNH_APP_ARG_SERVER_NAME
+interface=$YNH_APP_ARG_INTERFACE
 
 
 app=$YNH_APP_INSTANCE_NAME
 
-if [ "$vlc_required" -eq 1 ] ; then
-	pkg_dependencies="$pkg_dependencies vlc"
-fi
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
@@ -55,7 +53,6 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 #will be used when restoring
-ynh_app_setting_set --app=$app --key=vlc --value=$vlc_required
 
 #=================================================
 # STANDARD MODIFICATIONS

@@ -2,7 +2,8 @@
 	; Manifest
 		domain="domain.tld"	(DOMAIN)
 		is_public=1	(PUBLIC|public=1|private=0)
-		vlc=no
+		name=MyUMS
+		interface=eth0
 	; Checks
 		pkg_linter=1
 #Only work w/ root domain

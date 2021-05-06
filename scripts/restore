@@ -33,11 +33,8 @@ path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port_web=$(ynh_app_setting_get --app=$app --key=port_web)
 port_rend=$(ynh_app_setting_get --app=$app --key=port_rend)
-vlc_required=$(ynh_app_setting_get --app=$app --key=vlc)
 
-if [ "$vlc_required" -eq 1 ] ; then
-	pkg_dependencies="$pkg_dependencies vlc"
-fi
+
 
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED

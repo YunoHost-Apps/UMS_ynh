@@ -37,15 +37,30 @@
                 }
             },
             {
-                "name":"vlc",
-               "type": "boolean",
+                "name":"server_name",
+                "type":"string",
+                "example":"MyUMS",
+                "default": "UniversalMediaServer",
+                "ask": {
+                    "en": "By which name should UMS be identified by your renderer",
+                    "fr": "Par quel nom UMS doit-il être identifié par vos appareils"
+                },
+                "help": {
+                    "en": "This has no impact on the way the server will work and is only use to identify it on the network",
+                    "fr": "Ceci n a aucun impact sur le fonctionnement du serveur et sert uniquement à l identifier sur le réseau"
+                }
+            },
+            {
+                "name":"interface",
+                "type": "string",
+                "default": "eth0",
                "ask": {
-                   "en" : "Do you want to install vlc? It may be useful for web content streaming",
-                   "fr" : "Voulez vous installer vlc? Cela peut etre utile pour streamer du contenu web"
+                   "en" : "Which network interface do you want to use?",
+                   "fr" : "Quel réseau souhaitez vous utiliser?"
                },
                "help": {
-                 "en": "This will use approx 600GB more and will install a LOT of dependencies - NOT RECOMMENDED",
-                 "fr": "Cela va utiliser environ 600GB supplémentaires et installera BEAUCOUP de dépendances - NON RECOMMANDE"
+                 "en": "On lan, the interface is usually eth0, on wifi it s usually wlan0",
+                 "fr": "En filaire, l interface est souvent eth0, en wifi wlan0"
                }
             }
         ]
