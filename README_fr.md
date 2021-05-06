@@ -57,7 +57,7 @@ Et comme elle ne gère pas d'utilisateur, il n'y a bien entendu pas de LDAP.
  - pas de gestion d'utilisateur
  - Pas énormément testée
  
-##Other infos
+## Other infos
 
 Si vous ne trouvez pas le serveur sur vos renderer, vous pouvez essayer les trucs suivants:
 - Attendez un petit peu : lors du premier démarrage, UMS va indexer tous vos médias et ceci peut prendre un certain temps si vous en avez beaucoup

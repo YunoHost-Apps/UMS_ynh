@@ -62,7 +62,7 @@ As there is no user management, LDAP is not requested.
  - Not tested that much
 
 
-##Other infos
+## Other infos
 
 If you can't find the server on a renderer, you may try the following trouble shooting :
 - Wait a little bit : the first start up will intialized the database and if you have a lot of media, this may take a while
