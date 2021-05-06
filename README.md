@@ -24,12 +24,16 @@ Upstream source code may be found [here](https://github.com/UniversalMediaServer
 
 ## Screenshots
 
-![](Link to a screenshot of this app.)
+![](https://www.universalmediaserver.com/assets/img/web-interface.gif)
 
 ## Configuration
 
 Once installed, UMS will create config file in `/home/ums/.config/UMS/`
-All settings are pretty well documented. You may change them from here.
+
+All settings are pretty well documented directly in the files.
+The default setting will use the shared multimedia directory by default (located into `/home/yunohost.multimedia/share`), you may change this setting in `/home/ums/.config/UMS/UMS.conf` with the setting "folders"
+
+
 
 ## Documentation
 
@@ -44,9 +48,6 @@ All settings are pretty well documented. You may change them from here.
 For now, the app support single instance only.
 As there is no user management, LDAP is not requested.
 
-The default setting will use the shared multimedia directory by default, you may change this setting in `/home/ums/.config/UMS/UMS.conf` with the setting "folders"
-
-
 
 #### Supported architectures
 
@@ -55,16 +56,11 @@ The default setting will use the shared multimedia directory by default, you may
 
 ## Limitations
 
-* Known limitations : 
- - No multiinstance
+ - No multi-instance
  - work only on its own subdomain (ums.mydomain.tld, not on mydomain.tld/ums)
  - No user management
  - Not tested that much
 
-## Additional information
-
-I added the possibility to install vlc on installation. Beware! I addn't tested it and I'm not sure it is of any use for a headless server.
-Moreover, it will download a full graphical UI, so not very useful on a server...
 
 **More info on the documentation page:**  
 https://yunohost.org/packaging_apps

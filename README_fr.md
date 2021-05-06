@@ -23,12 +23,13 @@ Le code du programme peut ^etre consulté [ici]](https://github.com/UniversalMed
 
 ## Captures d'écran
 
-![](Lien vers une capture d'écran de cette application.)
+![](https://www.universalmediaserver.com/assets/img/web-interface.gif)
 
 ## Configuration
 
 Une fois installé, tous les réglages peuvent etre trouver dans `/ums/.config/UMS/`
 Les réglages sont plutot bien documentés, vous pouvez les changer directement dans le fichier.
+Le réglage par défaut utilisera le répertoire multimedia partagé (situé dans `/home/yunohost.multimedia/share`). Vous pouvez changer ce réglage dans le fichier `/home/ums/.config/UMS/UMS.conf` sur le réglage "folders".
 
 ## Documentation
 
@@ -39,10 +40,10 @@ Les réglages sont plutot bien documentés, vous pouvez les changer directement 
 
 #### Support multi-utilisateur
 
-Pour l'instant, l'application supporte uniuqment un mode mono-instance.
+Pour l'instant, l'application supporte uniquement un mode mono-instance.
 Et comme elle ne gère pas d'utilisateur, il n'y a bien entendu pas de LDAP.
 
-Le réglage par défaut partagera le répertoire multimedia partagé. Vous pouvez changer ce réglage dans le fichier `/home/ums/.config/UMS/UMS.conf` sur le réglage "folders".
+
 
 #### Architectures supportées
 
@@ -51,17 +52,11 @@ Le réglage par défaut partagera le répertoire multimedia partagé. Vous pouve
 
 ## Limitations
 
-* Limitations connues: 
  - pas de  multiinstance
  - fonctionne uniquement en sous-domaine (ums.mydomain.tld, et non mydomain.tld/ums)
  - pas de gestion d'utilisateur
  - Pas énormément testée
  
-## Informations additionnelles
-
-J'ai rajouté la possibilité d'installer vlc lors de l'installation. ATTENTION, je ne l'ai pas testé et je ne suis pas sur que cela serve à quelque chose sur un serveur headless...
-De plus, vlc requiert l'installation d'un environnement graphique complet.
-
 **Plus d'informations sur la page de documentation :**  
 https://yunohost.org/packaging_apps
 
