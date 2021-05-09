@@ -17,9 +17,9 @@ Universal Media Server est un serveur DLNA, UPnp et HTTP/S libre supportant tous
 Le programme stream ou transcode beaucoup de formats différents avec peu ou pas de configuration.
 Il utilise by FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviSynth, VLC et d'autres, qiu'il combine pour permettre d'exploiter une grande variété de format.
 Il était originellement basé sur PS3 Media Server de shagrath, et a été lancé par SubJunk, un développeur officiel de PMS, pour assurer la plus grande stabilité et compatiblité.
-Le code du programme peut ^etre consulté [ici]](https://github.com/UniversalMediaServer/UniversalMediaServer)
+Le code du programme peut être consulté [ici]](https://github.com/UniversalMediaServer/UniversalMediaServer)
 
-**Version incluse :** 10.4.1
+**Version incluse :** 10.5.0
 
 ## Captures d'écran
 
