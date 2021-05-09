@@ -77,7 +77,7 @@ then
 	ynh_replace_string --match_string="__SHA256_SUM__" --replace_string="$SHA256" --target_file="../conf/app.src"
 	ynh_setup_source --dest_dir="$final_path"
 	tar xfvz $final_path/app.tgz --strip-component=1 --directory=$final_path/
-	rm $final_path/app.tgz
+	ynh_secure_remove $final_path/app.tgz
 fi
 
 #=================================================
