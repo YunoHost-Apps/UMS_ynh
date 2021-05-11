@@ -109,6 +109,14 @@ ynh_system_user_create --username=$app --home_dir=/home/$app
 # ...
 #=================================================
 
+#Close unwanted open port in firewall
+if yunohost firewall list | grep -q "\- $port_web$"
+then
+	ynh_script_progression --message="Closing port $port_web as it shouldn't be open..."
+	yunohost firewall disallow TCP $port_web 2>&1
+fi
+
+
 #=================================================
 # SETUP SYSTEMD
 #=================================================
