@@ -70,7 +70,6 @@ ynh_app_setting_set --app=$app --key=port_rend --value=$port_rend
 
 # Open the port -- TO BE CHECKED IF REQUIRED
 ynh_script_progression --message="Configuring firewall..." --weight=3
-#ynh_exec_warn_less yunohost firewall allow --no-upnp TCP $port_web
 ynh_exec_warn_less yunohost firewall allow --no-upnp TCP $port_rend
 
 #=================================================
@@ -173,7 +172,7 @@ ynh_use_logrotate
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
-yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server." --log="/var/log/$app/$app.log" --needs_exposed_ports "$port_web" "$port_rend"
+yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server." --log="/var/log/$app/$app.log" --needs_exposed_ports "$port_rend"
 
 #=================================================
 # START SYSTEMD SERVICE

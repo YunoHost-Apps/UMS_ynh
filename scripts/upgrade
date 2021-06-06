@@ -63,6 +63,14 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=2
 
 ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
 
+#Close unwanted open port in firewall
+if yunohost firewall list | grep -q "\- $port_web$"
+then
+	ynh_script_progression --message="Closing port $port_web as it shouldn't be open..."
+	yunohost firewall disallow TCP $port 2>&1
+fi
+
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
@@ -150,7 +158,7 @@ ynh_use_logrotate --non-append
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=2
 
-yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server." --log=/var/log/$app/$app.log --needs_exposed_ports $port_web $port_rend
+yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server." --log=/var/log/$app/$app.log --needs_exposed_ports $port_rend
 
 #=================================================
 # START SYSTEMD SERVICE
