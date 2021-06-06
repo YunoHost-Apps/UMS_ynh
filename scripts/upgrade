@@ -63,14 +63,6 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=2
 
 ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
 
-#Close unwanted open port in firewall
-if yunohost firewall list | grep -q "\- $port_web$"
-then
-	ynh_script_progression --message="Closing port $port_web as it shouldn't be open..."
-	yunohost firewall disallow TCP $port 2>&1
-fi
-
-
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
