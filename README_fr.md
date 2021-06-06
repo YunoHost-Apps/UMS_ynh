@@ -19,7 +19,7 @@ Il utilise by FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviS
 Il était originellement basé sur PS3 Media Server de shagrath, et a été lancé par SubJunk, un développeur officiel de PMS, pour assurer la plus grande stabilité et compatiblité.
 Le code du programme peut être consulté [ici]](https://github.com/UniversalMediaServer/UniversalMediaServer)
 
-**Version incluse :** 10.5.0
+**Version incluse :** 10.6.0
 
 ## Captures d'écran
 
