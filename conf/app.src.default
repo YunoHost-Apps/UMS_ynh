@@ -1,4 +1,4 @@
-SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/10.6.0/UMS-10.6.0-__MACH__.tgz
+SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/10.8.2/UMS-10.8.2-__MACH__.tgz
 SOURCE_SUM=__SHA256_SUM__
 SOURCE_FORMAT=tgz
 SOURCE_SUM_PRG=sha256sum
