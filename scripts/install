@@ -30,7 +30,7 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 server_name=$YNH_APP_ARG_SERVER_NAME
 interface=$YNH_APP_ARG_INTERFACE
 #upstream_version=$YNH_APP_MANIFEST_VERSION
-upstream_version=$(ynh_app_upstream_version --manifest=./manifest.json)
+upstream_version=$(ynh_app_upstream_version)
 
 
 app=$YNH_APP_INSTANCE_NAME
