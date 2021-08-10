@@ -72,9 +72,7 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 	
 	# Download, check integrity, uncompress and patch the source from app.src
-	cp ../conf/app.src.default ../conf/app.src
-	ynh_replace_string --match_string="__MACH__" --replace_string="$MACH" --target_file="../conf/app.src"
-	ynh_replace_string --match_string="__SHA256_SUM__" --replace_string="$SHA256" --target_file="../conf/app.src"
+	ynh_add_config --template="../conf/app.src.default" --destination="../conf/app.src"
 	ynh_setup_source --dest_dir="$final_path"
 	tar xfvz $final_path/app.tgz --strip-component=1 --directory=$final_path/
 	ynh_secure_remove $final_path/app.tgz

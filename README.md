@@ -20,7 +20,7 @@ It was originally based on PS3 Media Server by shagrath, and started by SubJunk,
 
 Upstream source code may be found [here](https://github.com/UniversalMediaServer/UniversalMediaServer)
 
-**Shipped version:** 10.8.2
+**Shipped version:** 10.9.0
 
 ## Screenshots
 
