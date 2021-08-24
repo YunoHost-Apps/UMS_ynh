@@ -10,22 +10,22 @@ pkg_dependencies="mediainfo dcraw p7zip"
 mach=`uname -m`
 case "$mach" in
  "armv6l" ) mach="armel"
-			sha256=4975bf06ad5cac301411302294a2dd36a337772d409f0b236640d75163e09dc1
+			sha256=5f8c48404c5f9ec0e33ba1db25a26ec0bbcbac80ae971b586289873940d9bce0
 			#for some reason, jre is not in the tarball
 			pkg_dependencies="$pkg_dependencies openjdk-8-jre" ;;
  "armv7l" ) if [ $(dpkg --print-architecture) = "armhf" ]; then 
  				mach="armhf"
- 				sha256=ff3b7182d741b142b6708690239ff390c017ae0cdb0be0fd45bbd601686c61e1
+ 				sha256=aac79bcdc8d84250ec7f91a0b8752c9b1e7f6b9a4a1935bdbd0f5c01cacf7d09
 				pkg_dependencies="$pkg_dependencies openjdk-8-jre"
  			else 
  				mach="armel"
- 				sha256=4975bf06ad5cac301411302294a2dd36a337772d409f0b236640d75163e09dc1
+ 				sha256=5f8c48404c5f9ec0e33ba1db25a26ec0bbcbac80ae971b586289873940d9bce0
 				pkg_dependencies="$pkg_dependencies openjdk-8-jre"
  			fi ;;
  "armv8l" ) mach="arm64"
- 			sha256=9ee0844e9f32d14ffcbdec8f001767ae0bfc412e26bb3e63308f3df6b638bcb3 ;;
+ 			sha256=177460262ec4d1dfb8b28f44b4f91d79d519ca7a4afe2a6e6ed6c0d1a821a240 ;;
  "x86_64" ) mach="x86_64"
- 			sha256=c0116491f44ae7345a6f991f847bc746761e54ccfeb54ad78a9059271c3af40b ;;
+ 			sha256=471b7bf68aaae7c68836b6e503ee0748cfba7b4cd01f23e408be559172dda45a ;;
  * ) mach="x86" 
- 	sha256=426eebd0b516bc271fda4dab808e9fb2e1afd3a3e480d916e3ab6db456fd82d6 ;;
+ 	sha256=309d61fe65cbca5b7f6fca7eff4b7a14a13f177a0912798c38f5c80dd833c7d9 ;;
 esac
