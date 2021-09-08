@@ -22,7 +22,6 @@ new_path=$YNH_APP_NEW_PATH
 
 app=$YNH_APP_INSTANCE_NAME
 
-
 #=================================================
 # LOAD SETTINGS
 #=================================================
@@ -31,11 +30,6 @@ ynh_script_progression --message="Loading installation settings..." --weight=1
 # Needed for helper "ynh_add_nginx_config"
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port_web=$(ynh_app_setting_get --app=$app --key=port_web)
-
-# Add settings here as needed by your application
-#db_name=$(ynh_app_setting_get --app=$app --key=db_name)
-#db_user=$db_name
-#db_pwd=$(ynh_app_setting_get --app=$app --key=db_pwd)
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
@@ -107,12 +101,6 @@ then
 	# Store file checksum for the new config file location
 	ynh_store_file_checksum --file="/etc/nginx/conf.d/$new_domain.d/$app.conf"
 fi
-
-#=================================================
-# SPECIFIC MODIFICATIONS
-#=================================================
-# ...
-#=================================================
 
 #=================================================
 # GENERIC FINALISATION
