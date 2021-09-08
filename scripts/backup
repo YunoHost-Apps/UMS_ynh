@@ -24,7 +24,6 @@ ynh_abort_if_errors
 ynh_print_warn --message="This script will only backup the app, no media will be saved"
 ynh_print_warn --message="To save your media, please use a backup tool such as borg"
 
-
 #=================================================
 # LOAD SETTINGS
 #=================================================

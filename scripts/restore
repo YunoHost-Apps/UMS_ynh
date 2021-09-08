@@ -34,15 +34,11 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port_web=$(ynh_app_setting_get --app=$app --key=port_web)
 port_rend=$(ynh_app_setting_get --app=$app --key=port_rend)
 
-
-
 #=================================================
 # CHECK IF THE APP CAN BE RESTORED
 #=================================================
 ynh_script_progression --message="Validating restoration parameters..." --weight=1
 
-ynh_webpath_available --domain=$domain --path_url=$path_url \
-	|| ynh_die --message="Path not available: ${domain}${path_url}"
 test ! -d $final_path \
 	|| ynh_die --message="There is already a directory: $final_path "
 
@@ -90,7 +86,6 @@ chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R root:$app "$final_path"
 chown root:$app "$final_path/UMS.sh"
-
 
 #=================================================
 # RESTORE FAIL2BAN CONFIGURATION
