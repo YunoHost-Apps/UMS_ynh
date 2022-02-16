@@ -86,7 +86,7 @@ ynh_script_progression --message="Configuring system user..." --weight=1
 
 # Create a system user
 #UMS require a home path for the user as config files are stored in there
-ynh_system_user_create --username=$app --home_dir=/home/$app
+ynh_system_user_create --username=$app --home_dir=/home/yunohost.app/$app
 
 #=================================================
 #SETTING MULTIMEDIA DIRECTORY
@@ -141,13 +141,13 @@ ynh_add_systemd_config
 ynh_script_progression --message="Setting up configuration file.." --weight=5
 
 #UMS read config file from .config/UMS folder
-mkdir -p "/home/$app/.config/UMS"
-ynh_add_config --template="UMS.conf.default" --destination="/home/$app/.config/UMS/UMS.conf"
-ynh_add_config --template="WEB.conf.default" --destination="/home/$app/.config/UMS/WEB.conf"
-ynh_add_config --template="VirtualFolders.conf.default" --destination="/home/$app/.config/UMS/VirtualFolders.conf"
-chown -R $app:$app "/home/$app/.config"
-chmod -R  700 "/home/$app/.config"
-#chmod 600 "/home/$app/.config/UMS/*"
+mkdir -p "/home/yunohost.app/$app/.config/UMS"
+ynh_add_config --template="UMS.conf.default" --destination="/home/yunohost.app/$app/.config/UMS/UMS.conf"
+ynh_add_config --template="WEB.conf.default" --destination="/home/yunohost.app/$app/.config/UMS/WEB.conf"
+ynh_add_config --template="VirtualFolders.conf.default" --destination="/home/yunohost.app/$app/.config/UMS/VirtualFolders.conf"
+chown -R $app:$app "/home/yunohost.app/$app/.config"
+chmod -R  700 "/home/yunohost.app/$app/.config"
+#chmod 600 "/home/yunohost.app/$app/.config/UMS/*"
 
 #=================================================
 # GENERIC FINALIZATION
