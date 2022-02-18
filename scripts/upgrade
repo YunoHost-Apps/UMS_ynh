@@ -30,12 +30,6 @@ upstream_version=$(ynh_app_upstream_version)
 upgrade_type=$(ynh_check_app_version_changed)
 
 #=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
-
-
-#=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
 ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=10
@@ -48,6 +42,19 @@ ynh_clean_setup () {
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
+
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+#move home folder from previous /home/app to /home/yunohost.app/$app
+#has to be after backup, otherwise backup will not find home folder and will fail
+if [ ! $(getent passwd $app | cut -d: -f6 | grep yunohost.app) ]
+then
+	ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
+	usermod -m -d /home/yunohost.app/$app $app
+fi
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -94,7 +101,7 @@ ynh_install_app_dependencies $pkg_dependencies
 ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir=/home/$app
+ynh_system_user_create --username=$app --home_dir=/home/yunohost.app/$app
 
 #=================================================
 # SPECIFIC UPGRADE
