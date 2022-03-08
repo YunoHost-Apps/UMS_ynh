@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 A DLNA, UPnP and HTTP(S) Media Server
 
-**Shipped version:** 10.17.0
+**Shipped version:** 10.16.0
 
 
 
