@@ -56,6 +56,19 @@ then
 	usermod -m -d /home/yunohost.app/$app $app
 fi
 
+#10.17.0 has a bug that overwrite the media path. 
+#https://github.com/UniversalMediaServer/UniversalMediaServer/issues/2864
+#This will reinitialize it to /home/yunohost.multimedia/share
+if [ $(ynh_app_upstream_version --manifest="/etc/yunohost/apps/$app/manifest.json") == "10.17.0" ]
+then
+	ynh_replace_string --match_string="folders =/opt/yunohost/ums,/home/yunohost.app/ums" \
+		--replace_string="folders=/home/yunohost.multimedia/share" \
+		--target_file="/home/yunohost.app/ums/.config/UMS/UMS.conf"
+	ynh_replace_string --match_string="folders_monitored =/opt/yunohost/ums,/home/yunohost.app/ums" \
+		--replace_string="folders_monitored=/home/yunohost.multimedia/share" \
+		--target_file="/home/yunohost.app/ums/.config/UMS/UMS.conf"
+fi
+
 #=================================================
 # STANDARD UPGRADE STEPS
 #=================================================
