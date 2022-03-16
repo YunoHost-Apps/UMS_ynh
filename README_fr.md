@@ -13,7 +13,6 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Un Serveur Multimedia DLNA, UPnP et HTTP(S)
 
-
 **Version incluse :** 10.18.0
 
 
