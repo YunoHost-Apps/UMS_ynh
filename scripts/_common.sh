@@ -34,7 +34,7 @@ case "$mach" in
  			pkg_dependencies="$pkg_dependencies openjdk-8-jre" ;;
  "aarch64" ) mach="arm64"
  			sha256=$sha256_arm64
- 			pkg_dependencies="$pkg_dependencies openjdk-8-jre" ;;
+ 			pkg_dependencies="$pkg_dependencies openjdk-11-jre" ;;
  "x86_64" ) mach="x86_64"
  			sha256=$sha256_x86_64 ;;
  * ) mach="x86" 
