@@ -19,19 +19,18 @@ case "$mach" in
  "armv6l" ) mach="armel"
 			sha256=$sha256_armel
 			#for some reason, jre is not in the tarball
-			pkg_dependencies="$pkg_dependencies openjdk-8-jre" ;;
+			pkg_dependencies="$pkg_dependencies openjdk-11-jre" ;;
  "armv7l" ) if [ $(dpkg --print-architecture) = "armhf" ]; then 
  				mach="armhf"
  				sha256=$sha256_armhf
-				pkg_dependencies="$pkg_dependencies openjdk-8-jre"
  			else 
  				mach="armel"
  				sha256=$sha256_armel
-				pkg_dependencies="$pkg_dependencies openjdk-8-jre"
- 			fi ;;
+ 			fi 
+ 			pkg_dependencies="$pkg_dependencies openjdk-11-jre";;
  "armv8l" ) mach="arm64"
  			sha256=$sha256_arm64
- 			pkg_dependencies="$pkg_dependencies openjdk-8-jre" ;;
+ 			pkg_dependencies="$pkg_dependencies openjdk-11-jre" ;;
  "aarch64" ) mach="arm64"
  			sha256=$sha256_arm64
  			pkg_dependencies="$pkg_dependencies openjdk-11-jre" ;;
