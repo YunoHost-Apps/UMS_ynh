@@ -17,7 +17,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Un Serveur Multimedia DLNA, UPnP et HTTP(S)
 
-**Version incluse :** 11.0.0
+**Version incluse :** 11.3.0
 
 
 ## Captures d'écran
