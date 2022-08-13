@@ -18,6 +18,8 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 A DLNA, UPnP and HTTP(S) Media Server
 
 **Shipped version:** 11.0.0
+
+
 ## Screenshots
 
 ![Screenshot of Universal Media Server](./doc/screenshots/screenshot.gif)
