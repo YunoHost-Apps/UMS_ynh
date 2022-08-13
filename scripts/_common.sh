@@ -9,17 +9,17 @@ pkg_dependencies="mediainfo dcraw p7zip"
 
 mach=`uname -m`
 
-sha256_arm64=23b1bb23118cf0128c752c4e19afb2ad7f3a3830d24b4755f5fb8ebcf42e5c0d
-sha256_armel=0785e8a3e3078a3956cf05b1f41b3f63e57df2e840f4e9a0af929e688cef0244
-sha256_armhf=031ca6ac177212abd91b2cf8de39a6c09804935e0c775392ea78271023d770ab
-sha256_x86_64=b6238039647660c23f3376c6524167fc845c4ca5ad5a5c13b21259ac7c96af20
-sha256_x86=27e9d29297b3fb54e0c5db26f42e8dba218f38c8ee8eaa661db5d490a0fc2081
+sha256_arm64=32290c3d4217c6cc0168566691787f503204af44e44ea33d3b7a3c7bd1d4763f
+sha256_armel=27d3c770885226b0e3762de81a24ea39cfe2ec0d90a595059bfb10f9252e0f7a
+sha256_armhf=a7acecc62dae6dbb5c4161ee47662c427b025270b64ecb1edc932e9fed1dae28
+sha256_x86_64=12533de6705ff7a7526753cf1c25c45a469f8ae743824dfa2abb40b2071459eb
+sha256_x86=34ca82263301e41d1666621d8f156f5fdfef34b451eefd0829530101089328db
 
 case "$mach" in
  "armv6l" ) mach="armel"
 			sha256=$sha256_armel
 			#for some reason, jre is not in the tarball
-			pkg_dependencies="$pkg_dependencies openjdk-11-jre" ;;
+			pkg_dependencies="$pkg_dependencies openjdk-17-jre" ;;
  "armv7l" ) if [ $(dpkg --print-architecture) = "armhf" ]; then 
  				mach="armhf"
  				sha256=$sha256_armhf
@@ -27,13 +27,13 @@ case "$mach" in
  				mach="armel"
  				sha256=$sha256_armel
  			fi 
- 			pkg_dependencies="$pkg_dependencies openjdk-11-jre";;
+ 			pkg_dependencies="$pkg_dependencies openjdk-17-jre";;
  "armv8l" ) mach="arm64"
  			sha256=$sha256_arm64
- 			pkg_dependencies="$pkg_dependencies openjdk-11-jre" ;;
+ 			pkg_dependencies="$pkg_dependencies openjdk-17-jre" ;;
  "aarch64" ) mach="arm64"
  			sha256=$sha256_arm64
- 			pkg_dependencies="$pkg_dependencies openjdk-11-jre" ;;
+ 			pkg_dependencies="$pkg_dependencies openjdk-17-jre" ;;
  "x86_64" ) mach="x86_64"
  			sha256=$sha256_x86_64 ;;
  * ) mach="x86" 
