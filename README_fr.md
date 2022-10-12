@@ -17,7 +17,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Un Serveur Multimedia DLNA, UPnP et HTTP(S)
 
-**Version incluse :** 11.4.1 *(:warning: Il s'agit de la branche `testing`. La [branche `master`](https://github.com/YunoHost-Apps/ums_ynh/tree/master) utilisée dans le catalogue est actuellement en 11.3.0\~ynh1.)*
+**Version incluse :** 11.5.0
 
 
 ## Captures d'écran
