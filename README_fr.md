@@ -18,8 +18,6 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 Un Serveur Multimedia DLNA, UPnP et HTTP(S)
 
 **Version incluse :** 11.5.0
-
-
 ## Captures d'écran
 
 ![Capture d'écran de Universal Media Server](./doc/screenshots/screenshot.gif)
