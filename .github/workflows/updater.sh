@@ -124,7 +124,7 @@ done
 
 # Replace new version in manifest
 echo "$(jq -s --indent 4 ".[] | .version = \"$version~ynh1\"" manifest.json)" > manifest.json
-echo "$(jq -s --indent 8 " [] | .upstream.version = \"$version\"" manifest.json)" > manifest.json
+echo "$(jq -s --indent 8 ".[] | .upstream.version = \"$version\"" manifest.json)" > manifest.json
 
 # No need to update the README, yunohost-bot takes care of it
 
