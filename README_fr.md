@@ -51,7 +51,7 @@ Sur de petits appareils (par exemple un raspberry), la transco peut demander tro
 
 * Site officiel de l'app : <www.universalmediaserver.com>
 * Documentation officielle de l'admin : <https://github.com/UniversalMediaServer/UniversalMediaServer/wiki>
-* Dépôt de code officiel de l'app : <https://github.com/UniversalMediaServer>
+* Dépôt de code officiel de l'app : <https://github.com/UniversalMediaServer/UniversalMediaServer>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_ums>
 * Signaler un bug : <https://github.com/YunoHost-Apps/ums_ynh/issues>
 

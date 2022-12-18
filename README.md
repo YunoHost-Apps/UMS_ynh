@@ -53,7 +53,7 @@ On small device (Raspberry for example), transco may be requiring too much power
 
 * Official app website: <www.universalmediaserver.com>
 * Official admin documentation: <https://github.com/UniversalMediaServer/UniversalMediaServer/wiki>
-* Upstream app code repository: <https://github.com/UniversalMediaServer>
+* Upstream app code repository: <https://github.com/UniversalMediaServer/UniversalMediaServer>
 * YunoHost documentation for this app: <https://yunohost.org/app_ums>
 * Report a bug: <https://github.com/YunoHost-Apps/ums_ynh/issues>
 

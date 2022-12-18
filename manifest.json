@@ -6,16 +6,16 @@
         "en": "A DLNA, UPnP and HTTP(S) Media Server",
         "fr": "Un Serveur Multimedia DLNA, UPnP et HTTP(S)"
     },
-    "version": "11.5.0~ynh1",
+    "version": "11.5.0~ynh2",
     "url": "www.universalmediaserver.com",
     "upstream": {
         "version": "11.5.0",
         "license": "GPL-2.0-or-later",
         "website": "www.universalmediaserver.com",
         "admindoc": "https://github.com/UniversalMediaServer/UniversalMediaServer/wiki",
-        "code": "https://github.com/UniversalMediaServer"
+        "code": "https://github.com/UniversalMediaServer/UniversalMediaServer"
     },
-    "license": "GPL-3.0-or-later",
+    "license": "GPL-2.0-or-later",
     "maintainer": {
         "name": "Krakinou",
         "email": "misterl56@hotmail.com"
