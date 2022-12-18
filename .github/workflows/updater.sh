@@ -63,7 +63,7 @@ case $asset_url in
   *"armhf.tgz"*)
     src="app.armhf"
     ;;
-  *"x_86_64.tgz"*)
+  *"x86_64.tgz"*)
     src="app.x86_64"
     ;;
   *"x86.tgz"*)
