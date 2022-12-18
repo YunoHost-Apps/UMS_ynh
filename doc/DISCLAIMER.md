@@ -1,5 +1,7 @@
 ### Configuration
 
+At first run, UMS will ask you to create an admin user. This can be disable later on in the settings
+
 Once installed, UMS will create config file in `/home/yunohost.app/ums/.config/UMS/`
 
 All settings are pretty well documented directly in the files.
@@ -8,9 +10,8 @@ The default setting will use the shared multimedia directory by default (located
 ### Limitations
 
  - No multi-instance
+ - No User integration with Yunohost
  - work only on its own subdomain (ums.mydomain.tld, not on mydomain.tld/ums)
- - No user management
- - Not tested that much
 
 ### Other infos
 
