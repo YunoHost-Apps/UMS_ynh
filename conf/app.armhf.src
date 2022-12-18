@@ -1,0 +1,5 @@
+SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/__UPSTREAM_VERSION__/UMS-__UPSTREAM_VERSION__-armhf.tgz
+SOURCE_SUM=864924728649edb50a0b679fd058dcf0e6e4abbcf96a4ceb0c63e48f6b5514ce
+SOURCE_FORMAT=tgz
+SOURCE_SUM_PRG=sha256sum
+SOURCE_EXTRACT=false
