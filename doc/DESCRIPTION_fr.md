@@ -1,0 +1,2 @@
+Universal Media Server est un serveur multimédia UPnP compatible DLNA. Il peut partager des vidéos, de l'audio et des images avec la pluparts des équipements modernes. 
+Le programme stream ou transcode de nombreux formats média différents avec peu ou pas de configuration. Il utilise par FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviSynth, VLC et d'autres, qui se combinent pour offrir une grande variété de formats.

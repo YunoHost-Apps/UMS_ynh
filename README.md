@@ -15,16 +15,20 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-A DLNA, UPnP and HTTP(S) Media Server
+Universal Media Server is a DLNA-compliant UPnP Media Server. It is capable of sharing video, audio and images between most modern devices.
+
+The program streams or transcodes many different media formats with little or no configuration. It is powered by FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviSynth, VLC and more, which combine to offer support for a wide range of media formats.
 
 **Shipped version:** 11.5.0
 ## Screenshots
 
-![Screenshot of Universal Media Server](./doc/screenshots/screenshot.gif)
+![Screenshot of Universal Media Server](./doc/screenshots/screenshot.png)
 
 ## Disclaimers / important information
 
 ### Configuration
+
+At first run, UMS will ask you to create an admin user. This can be disable later on in the settings
 
 Once installed, UMS will create config file in `/home/yunohost.app/ums/.config/UMS/`
 
@@ -34,9 +38,8 @@ The default setting will use the shared multimedia directory by default (located
 ### Limitations
 
  - No multi-instance
+ - No User integration with Yunohost
  - work only on its own subdomain (ums.mydomain.tld, not on mydomain.tld/ums)
- - No user management
- - Not tested that much
 
 ### Other infos
 

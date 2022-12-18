@@ -63,7 +63,7 @@ case $asset_url in
   *"armhf.tgz"*)
     src="app.armhf"
     ;;
-  *"x_86_64.tgz"*)
+  *"x86_64.tgz"*)
     src="app.x86_64"
     ;;
   *"x86.tgz"*)
@@ -124,7 +124,7 @@ done
 
 # Replace new version in manifest
 echo "$(jq -s --indent 4 ".[] | .version = \"$version~ynh1\"" manifest.json)" > manifest.json
-echo "$(jq -s --indent 8 " [] | .upstream.version = \"$version\"" manifest.json)" > manifest.json
+echo "$(jq -s --indent 4 ".[] | .upstream.version = \"$version\"" manifest.json)" > manifest.json
 
 # No need to update the README, yunohost-bot takes care of it
 
