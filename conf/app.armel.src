@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/__UPSTREAM_VERSION__/UMS-__UPSTREAM_VERSION__-armel.tgz
-SOURCE_SUM=f0f9b517fbcedd4b4883ef5de1a6bd96ba1740658220f52037fdb6a4a14d8543
-SOURCE_FORMAT=tgz
+SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.0.0/UMS-13.0.0-armel.tgz
+SOURCE_SUM=c8405c8347cee916eed4d6850a4ebde28f87b5031c196106859c2f43f5f01a68
 SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tgz
 SOURCE_EXTRACT=false
