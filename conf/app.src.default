@@ -1,5 +1,0 @@
-SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/__UPSTREAM_VERSION__/UMS-__UPSTREAM_VERSION__-__MACH__.tgz
-SOURCE_SUM=__SHA256__
-SOURCE_FORMAT=tgz
-SOURCE_SUM_PRG=sha256sum
-SOURCE_EXTRACT=false

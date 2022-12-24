@@ -1,5 +1,7 @@
 ### Configuration
 
+A la première connexion, UMS vous demandera de créer un user administrateur. Cela peut-être désactivé plus tard dans les réglages.
+
 Une fois installé, tous les réglages peuvent être trouvés dans `/home/yunohost.app/ums/.config/UMS/`
 Les réglages sont plutôt bien documentés, vous pouvez les changer directement dans le fichier.
 Le réglage par défaut utilisera le répertoire multimédia partagé (situé dans `/home/yunohost.multimedia/share`). Vous pouvez changer ce réglage dans le fichier `/home/yunohost.app/ums/.config/UMS/UMS.conf` sur le réglage "folders".
@@ -7,8 +9,8 @@ Le réglage par défaut utilisera le répertoire multimédia partagé (situé da
 ### Limitations
 
  - pas de  multiinstance
+ - Pas d'intégration des utilisateurs avec Yunohost
  - fonctionne uniquement en sous-domaine (ums.mydomain.tld, et non mydomain.tld/ums)
- - pas de gestion d'utilisateur
  - pas énormément testé
  
 ### Autres infos

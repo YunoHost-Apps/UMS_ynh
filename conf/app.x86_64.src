@@ -1,0 +1,5 @@
+SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.0.0/UMS-13.0.0-x86_64.tgz
+SOURCE_SUM=49fa721ad68440b73306149e02a112aae18bf114efcca997df6e919365a22c82
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tgz
+SOURCE_EXTRACT=false
