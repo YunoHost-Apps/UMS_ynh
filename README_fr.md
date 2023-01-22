@@ -5,23 +5,23 @@ It shall NOT be edited by hand.
 
 # Universal Media Server pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/ums.svg)](https://dash.yunohost.org/appci/app/ums) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/ums.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/ums.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/ums.svg)](https://dash.yunohost.org/appci/app/ums) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/ums.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/ums.maintain.svg)
 [![Installer Universal Media Server avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=ums)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Universal Media Server rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Universal Media Server rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Universal Media Server est un serveur multimédia UPnP compatible DLNA. Il peut partager des vidéos, de l'audio et des images avec la pluparts des équipements modernes. 
 Le programme stream ou transcode de nombreux formats média différents avec peu ou pas de configuration. Il utilise par FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviSynth, VLC et d'autres, qui se combinent pour offrir une grande variété de formats.
 
-**Version incluse :** 13.0.1
-## Captures d'écran
+**Version incluse :** 13.1.0
+## Captures d’écran
 
-![Capture d'écran de Universal Media Server](./doc/screenshots/screenshot.png)
+![Capture d’écran de Universal Media Server](./doc/screenshots/screenshot.png)
 
 ## Avertissements / informations importantes
 
@@ -52,9 +52,9 @@ Sur de petits appareils (par exemple un raspberry), la transco peut demander tro
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <www.universalmediaserver.com>
-* Documentation officielle de l'admin : <https://github.com/UniversalMediaServer/UniversalMediaServer/wiki>
-* Dépôt de code officiel de l'app : <https://github.com/UniversalMediaServer/UniversalMediaServer>
+* Site officiel de l’app : <www.universalmediaserver.com>
+* Documentation officielle de l’admin : <https://github.com/UniversalMediaServer/UniversalMediaServer/wiki>
+* Dépôt de code officiel de l’app : <https://github.com/UniversalMediaServer/UniversalMediaServer>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_ums>
 * Signaler un bug : <https://github.com/YunoHost-Apps/ums_ynh/issues>
 
@@ -70,4 +70,4 @@ ou
 sudo yunohost app upgrade ums -u https://github.com/YunoHost-Apps/ums_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
