@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.1.0/UMS-13.1.0-armhf.tgz
-SOURCE_SUM=7a4f39c134bbdc1ed3a27af799ac147bc6b95abd019b5ee31cc57d52b5f09337
+SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.2.0/UMS-13.2.0-armhf.tgz
+SOURCE_SUM=5e478d40336600517a6f765c49c45bb81c627b76113b571d3ae09e9457429b3e
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tgz
 SOURCE_EXTRACT=false
