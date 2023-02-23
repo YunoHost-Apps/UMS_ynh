@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # Universal Media Server pour YunoHost
 
 [![Niveau d’intégration](https://dash.yunohost.org/integration/ums.svg)](https://dash.yunohost.org/appci/app/ums) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/ums.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/ums.maintain.svg)
+
 [![Installer Universal Media Server avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=ums)
 
 *[Read this readme in english.](./README.md)*
