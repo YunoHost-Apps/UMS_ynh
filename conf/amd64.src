@@ -2,4 +2,5 @@ SOURCE_URL=https://github.com/UniversalMediaServer/UniversalMediaServer/releases
 SOURCE_SUM=1b009c7deb737641e173a0a82c0b105d8e33a4392de661562e156e4434a4ed17
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tgz
-SOURCE_EXTRACT=false
+SOURCE_EXTRACT=true
+SOURCE_IN_SUBDIR=true
