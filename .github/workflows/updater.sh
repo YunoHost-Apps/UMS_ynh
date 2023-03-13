@@ -55,19 +55,16 @@ echo "Handling asset at $asset_url"
 # Leave $src empty to ignore the asset
 case $asset_url in
   *"arm64.tgz"*)
-    src="app.arm64"
-    ;;
-  *"armel.tgz"*)
-    src="app.armel"
+    src="arm64"
     ;;
   *"armhf.tgz"*)
-    src="app.armhf"
+    src="armhf"
     ;;
   *"x86_64.tgz"*)
-    src="app.x86_64"
+    src="amd64"
     ;;
   *"x86.tgz"*)
-    src="app.x86"
+    src="i386"
     ;;
   *)
     src=""

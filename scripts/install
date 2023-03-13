@@ -101,16 +101,9 @@ ynh_multimedia_addaccess $app
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=12
 
-# Download, check integrity, uncompress and patch the source from app.src
-# Create an app.src for the correct compiled version of UMS
-# match string are fulfilled in _common.sh
-ynh_add_config --template="../conf/app.$mach.src" --destination="../conf/app.src"
-
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$final_path"
-tar xfvz $final_path/app.tgz --strip-component=1 --directory=$final_path/
-rm $final_path/app.tgz
+ynh_setup_source --dest_dir="$final_path" --source_id="$YNH_ARCH"
 
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
