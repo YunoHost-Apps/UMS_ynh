@@ -11,30 +11,6 @@ source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
-#=================================================
-
-#REMOVEME? ynh_clean_setup () {
-	### Remove this function if there's nothing to clean before calling the remove script.
-	true
-}
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
-
-ynh_print_warn --message="This script will only backup the app, no media will be saved"
-ynh_print_warn --message="To save your media, please use a backup tool such as borg"
-
-#=================================================
-# LOAD SETTINGS
-#=================================================
-#REMOVEME? ynh_print_info --message="Loading installation settings..."
-
-#REMOVEME? app=$YNH_APP_INSTANCE_NAME
-
-#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
-#REMOVEME? domain=$(ynh_app_setting_get --app=$app --key=domain)
-
-#=================================================
 # DECLARE DATA AND CONF FILES TO BACKUP
 #=================================================
 ynh_print_info --message="Declaring files to be backed up..."
@@ -50,13 +26,6 @@ ynh_backup --src_path="$install_dir"
 #=================================================
 
 ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
-
-#=================================================
-# BACKUP FAIL2BAN CONFIGURATION
-#=================================================
-
-#ynh_backup --src_path="/etc/fail2ban/jail.d/$app.conf"
-#ynh_backup --src_path="/etc/fail2ban/filter.d/$app.conf"
 
 #=================================================
 # SPECIFIC BACKUP

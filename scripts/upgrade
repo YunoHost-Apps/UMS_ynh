@@ -12,15 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-#REMOVEME? ynh_script_progression --message="Loading installation settings..." --weight=1
 
-#REMOVEME? app=$YNH_APP_INSTANCE_NAME
-
-#REMOVEME? domain=$(ynh_app_setting_get --app=$app --key=domain)
-#REMOVEME? path=$(ynh_app_setting_get --app=$app --key=path)
-#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
-#REMOVEME? port_web=$(ynh_app_setting_get --app=$app --key=port_web)
-#REMOVEME? port_rend=$(ynh_app_setting_get --app=$app --key=port_rend)
 upstream_version=$(ynh_app_upstream_version)
 
 #=================================================
@@ -28,20 +20,6 @@ upstream_version=$(ynh_app_upstream_version)
 #=================================================
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-#REMOVEME? ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=10
-
-# Backup the current version of the app
-#REMOVEME? ynh_backup_before_upgrade
-#REMOVEME? ynh_clean_setup () {
-	# Restore it if the upgrade fails
-#REMOVEME? 	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -90,6 +68,10 @@ then
 	ynh_setup_source --dest_dir="$install_dir" 
 fi
 
+chmod -R o-rwx "$install_dir"
+chown -R root:$app "$install_dir"
+chown root:$app "$install_dir/UMS.sh"
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
@@ -99,52 +81,12 @@ ynh_script_progression --message="Upgrading NGINX web server configuration..." -
 ynh_add_nginx_config "port_web"
 
 #=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-#REMOVEME? ynh_script_progression --message="Upgrading dependencies..." --weight=4
-
-#REMOVEME? ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-#REMOVEME? ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-#REMOVEME? ynh_system_user_create --username=$app --home_dir=/home/yunohost.app/$app
-
-#=================================================
-# SPECIFIC UPGRADE
-#=================================================
-# ...
-#=================================================
-
-#Close unwanted open port in firewall
-if yunohost firewall list | grep -q "\- $port_web$"
-then
-	ynh_script_progression --message="Closing port $port_web as it shouldn't be open..."
-	yunohost firewall disallow TCP $port_web 2>&1
-fi
-
-#=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Upgrading systemd configuration..." --weight=1
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
-
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-
-# Set permissions on app files
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R root:$app "$install_dir"
-chown root:$app "$install_dir/UMS.sh"
 
 #=================================================
 # SETUP LOGROTATE
@@ -167,21 +109,6 @@ yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server."
 ynh_script_progression --message="Starting a systemd service..." --weight=2
 
 ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
-
-#=================================================
-# UPGRADE FAIL2BAN
-#=================================================
-#ynh_script_progression --message="Reconfiguring Fail2Ban..." --weight=1
-
-# Create a dedicated Fail2Ban config
-#ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..." --weight=1
-
-#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT

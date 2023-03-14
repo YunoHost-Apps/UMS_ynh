@@ -1341,7 +1341,7 @@ upnp_enable =
 # is assigned dynamically.
 # Example: 7000, which means the web interface is at localhost:7000
 # Default: 9001
-web_port =__PORT_WEB__
+web_port =__PORT__
 
 # Web enable
 # ----------
