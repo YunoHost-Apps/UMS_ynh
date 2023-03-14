@@ -12,14 +12,14 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
+#REMOVEME? ynh_script_progression --message="Loading installation settings..." --weight=1
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-port_web=$(ynh_app_setting_get --app=$app --key=port_web)
-port_rend=$(ynh_app_setting_get --app=$app --key=port_rend)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+#REMOVEME? domain=$(ynh_app_setting_get --app=$app --key=domain)
+#REMOVEME? port_web=$(ynh_app_setting_get --app=$app --key=port_web)
+#REMOVEME? port_rend=$(ynh_app_setting_get --app=$app --key=port_rend)
+#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
 
 #=================================================
 # STANDARD REMOVE
@@ -45,18 +45,18 @@ ynh_remove_systemd_config
 #=================================================
 # REMOVE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Removing dependencies..." --weight=5
+#REMOVEME? ynh_script_progression --message="Removing dependencies..." --weight=5
 
 # Remove metapackage and its dependencies
-ynh_remove_app_dependencies
+#REMOVEME? ynh_remove_app_dependencies
 
 #=================================================
 # REMOVE APP MAIN DIR
 #=================================================
-ynh_script_progression --message="Removing app main directory..." --weight=2
+#REMOVEME? ynh_script_progression --message="Removing app main directory..." --weight=2
 
 # Remove the app directory securely
-ynh_secure_remove --file="$final_path"
+#REMOVEME? ynh_secure_remove --file="$install_dir"
 
 #=================================================
 # REMOVE NGINX CONFIGURATION
@@ -104,10 +104,10 @@ ynh_secure_remove --file="/var/log/$app"
 #=================================================
 # REMOVE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Removing the dedicated system user..." --weight=1
+#REMOVEME? ynh_script_progression --message="Removing the dedicated system user..." --weight=1
 
 # Delete a system user
-ynh_system_user_delete --username=$app
+#REMOVEME? ynh_system_user_delete --username=$app
 ynh_secure_remove --file="/home/yunohost.app/$app"
 
 #=================================================

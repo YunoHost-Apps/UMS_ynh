@@ -12,15 +12,15 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
+#REMOVEME? ynh_script_progression --message="Loading installation settings..." --weight=1
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-port_web=$(ynh_app_setting_get --app=$app --key=port_web)
-port_rend=$(ynh_app_setting_get --app=$app --key=port_rend)
+#REMOVEME? domain=$(ynh_app_setting_get --app=$app --key=domain)
+#REMOVEME? path=$(ynh_app_setting_get --app=$app --key=path)
+#REMOVEME? #REMOVEME? install_dir=$(ynh_app_setting_get --app=$app --key=install_dir)
+#REMOVEME? port_web=$(ynh_app_setting_get --app=$app --key=port_web)
+#REMOVEME? port_rend=$(ynh_app_setting_get --app=$app --key=port_rend)
 upstream_version=$(ynh_app_upstream_version)
 
 #=================================================
@@ -32,16 +32,16 @@ upgrade_type=$(ynh_check_app_version_changed)
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
 #=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=10
+#REMOVEME? ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=10
 
 # Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
+#REMOVEME? ynh_backup_before_upgrade
+#REMOVEME? ynh_clean_setup () {
 	# Restore it if the upgrade fails
-	ynh_restore_upgradebackup
+#REMOVEME? 	ynh_restore_upgradebackup
 }
 # Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -87,7 +87,7 @@ ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
-	ynh_setup_source --dest_dir="$final_path" --source_id="$YNH_ARCH"
+	ynh_setup_source --dest_dir="$install_dir" 
 fi
 
 #=================================================
@@ -101,17 +101,17 @@ ynh_add_nginx_config "port_web"
 #=================================================
 # UPGRADE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=4
+#REMOVEME? ynh_script_progression --message="Upgrading dependencies..." --weight=4
 
-ynh_install_app_dependencies $pkg_dependencies
+#REMOVEME? ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
+#REMOVEME? ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir=/home/yunohost.app/$app
+#REMOVEME? ynh_system_user_create --username=$app --home_dir=/home/yunohost.app/$app
 
 #=================================================
 # SPECIFIC UPGRADE
@@ -141,10 +141,10 @@ ynh_add_systemd_config
 #=================================================
 
 # Set permissions on app files
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R root:$app "$final_path"
-chown root:$app "$final_path/UMS.sh"
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R root:$app "$install_dir"
+chown root:$app "$install_dir/UMS.sh"
 
 #=================================================
 # SETUP LOGROTATE
@@ -179,9 +179,9 @@ ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$ap
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
+#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
-ynh_systemd_action --service_name=nginx --action=reload
+#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT

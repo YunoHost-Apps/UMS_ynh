@@ -13,45 +13,45 @@ source /usr/share/yunohost/helpers
 # MANAGE SCRIPT FAILURE
 #=================================================
 
-ynh_clean_setup () {
+#REMOVEME? ynh_clean_setup () {
 	### Remove this function if there's nothing to clean before calling the remove script.
 	true
 }
 # Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-domain=$YNH_APP_ARG_DOMAIN
-path_url=/
-is_public=$YNH_APP_ARG_IS_PUBLIC
-server_name=$YNH_APP_ARG_SERVER_NAME
-interface=$YNH_APP_ARG_INTERFACE
+#REMOVEME? domain=$YNH_APP_ARG_DOMAIN
+path=/
+#REMOVEME? is_public=$YNH_APP_ARG_IS_PUBLIC
+#REMOVEME? server_name=$YNH_APP_ARG_SERVER_NAME
+#REMOVEME? interface=$YNH_APP_ARG_INTERFACE
 #upstream_version=$YNH_APP_MANIFEST_VERSION
 upstream_version=$(ynh_app_upstream_version)
 
-app=$YNH_APP_INSTANCE_NAME
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
 
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
-ynh_script_progression --message="Validating installation parameters..." --weight=1
+#REMOVEME? ynh_script_progression --message="Validating installation parameters..." --weight=1
 
-final_path=/opt/yunohost/$app
-test ! -e "$final_path" || ynh_die --message="This path already contains a folder"
+#REMOVEME? install_dir=/opt/yunohost/$app
+#REMOVEME? test ! -e "$install_dir" || ynh_die --message="This path already contains a folder"
 
 # Register (book) web path
-ynh_webpath_register --app=$app --domain=$domain --path_url=$path_url
+#REMOVEME? ynh_webpath_register --app=$app --domain=$domain --path=$path
 
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..." --weight=1
+#REMOVEME? ynh_script_progression --message="Storing installation settings..." --weight=1
 
-ynh_app_setting_set --app=$app --key=domain --value=$domain
-ynh_app_setting_set --app=$app --key=path --value=$path_url
+#REMOVEME? ynh_app_setting_set --app=$app --key=domain --value=$domain
+#REMOVEME? ynh_app_setting_set --app=$app --key=path --value=$path
 #will be used when restoring
 
 #=================================================
@@ -59,14 +59,14 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 #=================================================
 # FIND AND OPEN A PORT
 #=================================================
-ynh_script_progression --message="Finding an available port..." --weight=1
+#REMOVEME? ynh_script_progression --message="Finding an available port..." --weight=1
 
 # Find an available port
 #port_web is used for the web interface while port_rend is used by video renderer
-port_web=$(ynh_find_port --port=9001)
-ynh_app_setting_set --app=$app --key=port_web --value=$port_web
-port_rend=$(ynh_find_port --port=5001)
-ynh_app_setting_set --app=$app --key=port_rend --value=$port_rend
+#REMOVEME? port_web=$(ynh_find_port --port=9001)
+#REMOVEME? ynh_app_setting_set --app=$app --key=port_web --value=$port_web
+#REMOVEME? port_rend=$(ynh_find_port --port=5001)
+#REMOVEME? ynh_app_setting_set --app=$app --key=port_rend --value=$port_rend
 
 # Open the port -- TO BE CHECKED IF REQUIRED
 ynh_script_progression --message="Configuring firewall..." --weight=3
@@ -75,18 +75,18 @@ ynh_exec_warn_less yunohost firewall allow --no-upnp TCP $port_rend
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing dependencies..." --weight=30
+#REMOVEME? ynh_script_progression --message="Installing dependencies..." --weight=30
 
-ynh_install_app_dependencies $pkg_dependencies
+#REMOVEME? ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # CREATE DEDICATED USER
 #=================================================
-ynh_script_progression --message="Configuring system user..." --weight=1
+#REMOVEME? ynh_script_progression --message="Configuring system user..." --weight=1
 
 # Create a system user
 #UMS require a home path for the user as config files are stored in there
-ynh_system_user_create --username=$app --home_dir=/home/yunohost.app/$app
+#REMOVEME? ynh_system_user_create --username=$app --home_dir=/home/yunohost.app/$app
 
 #=================================================
 #SETTING MULTIMEDIA DIRECTORY
@@ -101,14 +101,14 @@ ynh_multimedia_addaccess $app
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=12
 
-ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+#REMOVEME? ynh_app_setting_set --app=$app --key=install_dir --value=$install_dir
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$final_path" --source_id="$YNH_ARCH"
+ynh_setup_source --dest_dir="$install_dir" 
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R root:$app "$final_path"
-chown root:$app "$final_path/UMS.sh"
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R root:$app "$install_dir"
+chown root:$app "$install_dir/UMS.sh"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -181,33 +181,33 @@ ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$ap
 #=================================================
 # SETUP SSOWAT
 #=================================================
-ynh_script_progression --message="Configuring permissions..." --weight=1
+#REMOVEME? ynh_script_progression --message="Configuring permissions..." --weight=1
 
 # Make app public if necessary
-if [ $is_public -eq 1 ]
+#REMOVEME? if [ $is_public -eq 1 ]
 then
 	# Everyone can access the app.
 	# The "main" permission is automatically created before the install script.
-	ynh_permission_update --permission="main" --add="visitors"
+#REMOVEME? 	ynh_permission_update --permission="main" --add="visitors"
 fi
 
 ### N.B. : the following extra permissions only make sense if your app
 ### does have for example an admin interface or an api.
 
 # Only the admin can access the admin panel of the app (if the app has an admin panel)
-#ynh_permission_create --permission="admin" --url="/admin" --allowed=$admin
+#REMOVEME? #ynh_permission_create --permission="admin" --url="/admin" --allowed=$admin
 
 # Everyone can access to the api part
 # We don't want to display the tile in the sso so we put --show_tile="false"
 # And we don't want that the YunoHost Admin can remove visitors group to this permission, so we put --protected="true"
-#ynh_permission_create --permission="api" --url "/api" --allowed="visitors" --show_tile="false" --protected="true"
+#REMOVEME? #ynh_permission_create --permission="api" --url "/api" --allowed="visitors" --show_tile="false" --protected="true"
 
 #=================================================
 # RELOAD NGINX
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
+#REMOVEME? ynh_script_progression --message="Reloading NGINX web server..." --weight=1
 
-ynh_systemd_action --service_name=nginx --action=reload
+#REMOVEME? ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
