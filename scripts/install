@@ -13,7 +13,6 @@ source /usr/share/yunohost/helpers
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
 
-#upstream_version=$YNH_APP_MANIFEST_VERSION
 upstream_version=$(ynh_app_upstream_version)
 
 #=================================================
@@ -52,7 +51,7 @@ chown root:$app "$install_dir/UMS.sh"
 ynh_script_progression --message="Configuring NGINX web server..." --weight=4
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config "port_web"
+ynh_add_nginx_config
 
 #=================================================
 # SETUP SYSTEMD
@@ -68,20 +67,18 @@ ynh_add_systemd_config
 ynh_script_progression --message="Setting up configuration file.." --weight=5
 
 #UMS read config file from .config/UMS folder
-mkdir -p "/home/yunohost.app/$app/.config/UMS"
-ynh_add_config --template="UMS.conf.default" --destination="/home/yunohost.app/$app/.config/UMS/UMS.conf"
-ynh_add_config --template="WEB.conf.default" --destination="/home/yunohost.app/$app/.config/UMS/WEB.conf"
-ynh_add_config --template="VirtualFolders.conf.default" --destination="/home/yunohost.app/$app/.config/UMS/VirtualFolders.conf"
-chown -R $app:$app "/home/yunohost.app/$app/.config"
-chmod -R  700 "/home/yunohost.app/$app/.config"
-#chmod 600 "/home/yunohost.app/$app/.config/UMS/*"
+mkdir -p "$install_dir/.config/UMS"
+ynh_add_config --template="UMS.conf.default" --destination="$install_dir/.config/UMS/UMS.conf"
+ynh_add_config --template="WEB.conf.default" --destination="$install_dir/.config/UMS/WEB.conf"
+ynh_add_config --template="VirtualFolders.conf.default" --destination="$install_dir/.config/UMS/VirtualFolders.conf"
+chown -R $app:$app "$install_dir/.config"
+chmod -R  700 "$install_dir/.config"
 
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
 # SECURE FILES AND DIRECTORIES
 #=================================================
-
 ynh_script_progression --message="Configuring log rotation..." --weight=1
 
 #TO BE CHECKED : debug.log file in ~/.config/UMS/
