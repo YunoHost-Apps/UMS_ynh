@@ -31,7 +31,7 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 if [ ! $(getent passwd $app | cut -d: -f6 | grep yunohost.app) ]
 then
 	ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
-	usermod -m -d /home/yunohost.app/$app $app
+	usermod -m -d $install_dir $app
 fi
 
 #10.17.0, 10.17.1 & 10.16.0 had a bug that overwrite the media path at startup of the service. 
@@ -41,10 +41,10 @@ current_version=$(ynh_app_upstream_version --manifest="/etc/yunohost/apps/$app/m
 if [ $current_version == "10.17.0" ] || [ $current_version == "10.16.0" ]
 then
 	ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
-	ynh_replace_string --match_string="folders =/opt/yunohost/$app,/home/yunohost.app/$app" \
+	ynh_replace_string --match_string="folders =/opt/yunohost/$app,$install_dir" \
 		--replace_string="folders=/home/yunohost.multimedia/share" \
 		--target_file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
-	ynh_replace_string --match_string="folders_monitored =/opt/yunohost/$app,/home/yunohost.app/$app" \
+	ynh_replace_string --match_string="folders_monitored =/opt/yunohost/$app,$install_dir" \
 		--replace_string="folders_monitored=/home/yunohost.multimedia/share" \
 		--target_file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
 fi
@@ -78,7 +78,7 @@ chown root:$app "$install_dir/UMS.sh"
 ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=2
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config "port_web"
+ynh_add_nginx_config
 
 #=================================================
 # SETUP SYSTEMD
