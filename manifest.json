@@ -6,10 +6,10 @@
         "en": "A DLNA, UPnP and HTTP(S) Media Server",
         "fr": "Un Serveur Multimedia DLNA, UPnP et HTTP(S)"
     },
-    "version": "13.2.0~ynh3",
+    "version": "13.3.0~ynh1",
     "url": "www.universalmediaserver.com",
     "upstream": {
-        "version": "13.2.0",
+        "version": "13.3.0",
         "license": "GPL-2.0-or-later",
         "website": "www.universalmediaserver.com",
         "admindoc": "https://github.com/UniversalMediaServer/UniversalMediaServer/wiki",
