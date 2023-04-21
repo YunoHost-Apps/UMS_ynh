@@ -97,8 +97,9 @@ cat <<EOT > conf/$src.src
 SOURCE_URL=$asset_url
 SOURCE_SUM=$checksum
 SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=$extension
-SOURCE_EXTRACT=false
+SOURCE_FORMAT=tar.gz
+SOURCE_EXTRACT=true
+SOURCE_IN_SUBDIR=true
 EOT
 echo "... conf/$src.src updated"
 
