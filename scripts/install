@@ -66,15 +66,12 @@ ynh_add_systemd_config
 #=================================================
 ynh_script_progression --message="Setting up configuration file.." --weight=5
 
-#UMS read config file from .config/UMS folder
-mkdir -p "$install_dir/.config/UMS"
+ynh_add_config --template="UMS.conf.default" --destination="$data_dir/.config/UMS/UMS.conf"
+ynh_add_config --template="WEB.conf.default" --destination="$data_dir/.config/UMS/WEB.conf"
+ynh_add_config --template="VirtualFolders.conf.default" --destination="$data_dir/.config/UMS/VirtualFolders.conf"
 
-ynh_add_config --template="UMS.conf.default" --destination="$install_dir/.config/UMS/UMS.conf"
-ynh_add_config --template="WEB.conf.default" --destination="$install_dir/.config/UMS/WEB.conf"
-ynh_add_config --template="VirtualFolders.conf.default" --destination="$install_dir/.config/UMS/VirtualFolders.conf"
-
-chown -R $app:$app "$install_dir/.config"
-chmod -R  700 "$install_dir/.config"
+chown -R $app:$app "$data_dir/.config"
+chmod -R  700 "$data_dir/.config"
 
 #=================================================
 # GENERIC FINALIZATION

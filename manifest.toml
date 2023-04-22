@@ -17,7 +17,7 @@ admindoc = "https://github.com/UniversalMediaServer/UniversalMediaServer/wiki"
 code = "https://github.com/UniversalMediaServer/UniversalMediaServer"
 
 [integration]
-yunohost = ">= 11.1.15"
+yunohost = ">= 11.1.17"
 architectures = "all"
 multi_instance = false
 ldap = false
@@ -76,6 +76,9 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
+
+    [resources.data_dir]
+    subdirs = ".config/UMS"
 
     [resources.permissions]
     main.url = "/"
