@@ -4,9 +4,14 @@
 # FETCHING LATEST RELEASE AND ITS ASSETS
 #=================================================
 
+#Installing tomlq
+python3 -m venv venv
+source venv/bin/activate
+pip3 install tomlq
+
 # Fetching information
-current_version=$(cat manifest.json | jq -j '.version|split("~")[0]')
-repo=$(cat manifest.json | jq -j '.upstream.code|split("https://github.com/")[1]')
+current_version=$(cat manifest.toml | tomlq -j '.version|split("~")[0]')
+repo=$(cat manifest.toml | tomlq -j '.upstream.code|split("https://github.com/")[1]')
 # Some jq magic is needed, because the latest upstream release is not always the latest version (e.g. security patches for older versions)
 version=$(curl --silent "https://api.github.com/repos/$repo/releases" | jq -r '.[] | select( .prerelease != true ) | .tag_name' | sort -V | tail -1)
 assets=($(curl --silent "https://api.github.com/repos/$repo/releases" | jq -r '[ .[] | select(.tag_name=="'$version'").assets[].browser_download_url ] | join(" ") | @sh' | tr -d "'"))
@@ -28,10 +33,12 @@ echo "PROCEED=false" >> $GITHUB_ENV
 # Proceed only if the retrieved version is greater than the current one
 if ! dpkg --compare-versions "$current_version" "lt" "$version" ; then
     echo "::warning ::No new version available"
+    rm -rf ./venv
     exit 0
 # Proceed only if a PR for this new version does not already exist
 elif git ls-remote -q --exit-code --heads https://github.com/$GITHUB_REPOSITORY.git ci-auto-update-v$version ; then
     echo "::warning ::A branch already exists for this update"
+    rm -rf ./venv
     exit 0
 fi
 
@@ -97,8 +104,9 @@ cat <<EOT > conf/$src.src
 SOURCE_URL=$asset_url
 SOURCE_SUM=$checksum
 SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=$extension
-SOURCE_EXTRACT=false
+SOURCE_FORMAT=tar.gz
+SOURCE_EXTRACT=true
+SOURCE_IN_SUBDIR=true
 EOT
 echo "... conf/$src.src updated"
 
@@ -120,10 +128,12 @@ done
 #=================================================
 
 # Replace new version in manifest
-echo "$(jq -s --indent 4 ".[] | .version = \"$version~ynh1\"" manifest.json)" > manifest.json
-echo "$(jq -s --indent 4 ".[] | .upstream.version = \"$version\"" manifest.json)" > manifest.json
+sed -i "s/^version\s*=.*/version = \"$version~ynh1\"/" manifest.toml
 
 # No need to update the README, yunohost-bot takes care of it
+
+#remove the venv folder
+rm -rf ./venv
 
 # The Action will proceed only if the PROCEED environment variable is set to true
 echo "PROCEED=true" >> $GITHUB_ENV
