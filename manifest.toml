@@ -28,7 +28,6 @@ ram.runtime = "50M"
 
 [install]
     [install.domain]
-    # this is a generic question - ask strings are automatically handled by Yunohost's core
     help.en = "UMS require its own subdomain"
     help.fr = "UMS a besoin de son propre sous-domaine"
     type = "domain"
@@ -67,6 +66,13 @@ ram.runtime = "50M"
         armhf.sha256 = "5e478d40336600517a6f765c49c45bb81c627b76113b571d3ae09e9457429b3e"
         i386.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.2.0/UMS-13.2.0-x86.tgz"
         i386.sha256 = "91a5c534664441064c772dcace5bcef02edac82d8d3c67155ddd803deabeb52c"
+
+        autoupdate.strategy = "latest_github_release"
+
+        autoupdate.asset.arm64 = "*-arm64.tgz"
+        autoupdate.asset.amd64 = "*-x86_64.tgz"
+        autoupdate.asset.armhf = "*-armhf.tgz"
+        autoupdate.asset.i386 = "*-x86.tgz"
 
     [resources.ports]
     main.default = 9001
