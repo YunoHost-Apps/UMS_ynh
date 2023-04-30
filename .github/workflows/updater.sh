@@ -100,8 +100,8 @@ else
 fi
 
 #update manifest
-sed -i "s/\A$src.url =.*/$src.url = \"$asset_url\"/" manifest.toml
-sed -i "s/\A$src.sha256 =*./$src.sha256 = \"$checksum\"/" manifest.toml
+sed -i "s|$src.url =.*|$src.url = \"$asset_url\"|" manifest.toml
+sed -i "s/$src.sha256 =*./$src.sha256 = \"$checksum\"/" manifest.toml
 
 echo "... Source updated in manifest.toml"
 
