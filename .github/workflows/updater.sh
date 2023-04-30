@@ -99,16 +99,11 @@ else
   extension=${filename##*.}
 fi
 
-# Rewrite source file
-cat <<EOT > conf/$src.src
-SOURCE_URL=$asset_url
-SOURCE_SUM=$checksum
-SOURCE_SUM_PRG=sha256sum
-SOURCE_FORMAT=tar.gz
-SOURCE_EXTRACT=true
-SOURCE_IN_SUBDIR=true
-EOT
-echo "... conf/$src.src updated"
+#update manifest
+sed -i "s/\A$src.url =.*/$src.url = \"$asset_url\"/" manifest.toml
+sed -i "s/\A$src.sha256 =*./$src.sha256 = \"$checksum\"/" manifest.toml
+
+echo "... Source updated in manifest.toml"
 
 else
 echo "... asset ignored"
