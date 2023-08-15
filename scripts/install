@@ -16,16 +16,6 @@ source /usr/share/yunohost/helpers
 upstream_version=$(ynh_app_upstream_version)
 
 #=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installing dependencies..." --weight=30
-
-if [[ "$YNH_ARCH" == "armhf" ]] || [[ "$YNH_ARCH" == "arm64" ]]
-then
-    pkg_dependencies+="openjdk-17-jre"
-fi
-
-#=================================================
 #SETTING MULTIMEDIA DIRECTORY
 #=================================================
 ynh_script_progression --message="Setting up Multimedia directory..." --weight=9
