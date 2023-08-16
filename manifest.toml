@@ -10,7 +10,6 @@ version = "13.5.0~ynh2"
 maintainers = ["Krakinou"]
 
 [upstream]
-version = "13.5.0"
 license = "GPL-2.0-or-later"
 website = "www.universalmediaserver.com"
 admindoc = "https://github.com/UniversalMediaServer/UniversalMediaServer/wiki"
@@ -22,16 +21,15 @@ architectures = "all"
 multi_instance = false
 ldap = false
 sso = false
-disk = "50M"
-ram.build = "50M"
-ram.runtime = "50M"
+disk = "270M"
+ram.build = "350M"
+ram.runtime = "350M"
 
 [install]
     [install.domain]
     help.en = "UMS require its own subdomain"
     help.fr = "UMS a besoin de son propre sous-domaine"
     type = "domain"
-    full_domain = true
 
     [install.init_main_permission]
     help.en = "Everybody will be able to access your media on the internet without connecting to Yunohost"
@@ -76,7 +74,7 @@ ram.runtime = "50M"
 
     [resources.ports]
     main.default = 9001
-    end.default = 5001
+    rend.default = 5001
     rend.exposed = "TCP"
 
     [resources.system_user]
@@ -84,7 +82,8 @@ ram.runtime = "50M"
     [resources.install_dir]
 
     [resources.data_dir]
-    subdirs = ".config/UMS"
+    dir = "/home/yunohost.app/__APP__"
+    subdirs = [ '.config', '.config/UMS' ]
 
     [resources.permissions]
     main.url = "/"

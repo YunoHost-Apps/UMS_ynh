@@ -31,9 +31,10 @@ ynh_script_progression --message="Setting up source files..." --weight=12
 # Download, check integrity, uncompress and patch the source from app.src
 ynh_setup_source --dest_dir="$install_dir" 
 
+chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
-chown -R root:$app "$install_dir"
-chown root:$app "$install_dir/UMS.sh"
+chown -R $app:$app "$install_dir"
+chown $app:$app "$install_dir/UMS.sh"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -56,6 +57,7 @@ ynh_add_systemd_config
 #=================================================
 ynh_script_progression --message="Setting up configuration file.." --weight=5
 
+mkdir -p "$data_dir/.config/UMS"
 ynh_add_config --template="UMS.conf.default" --destination="$data_dir/.config/UMS/UMS.conf"
 ynh_add_config --template="WEB.conf.default" --destination="$data_dir/.config/UMS/WEB.conf"
 ynh_add_config --template="VirtualFolders.conf.default" --destination="$data_dir/.config/UMS/VirtualFolders.conf"
