@@ -18,4 +18,4 @@ Si vous ne trouvez pas le serveur sur vos renderer, vous pouvez essayer les truc
 - Vérifiez bien que le service ums tourne dans l'interface d'administration de yunohost
 - Vérifiez sur quel interface réseau ums s'annonce. Vous pouvez trouver l'adresse utilisée et le réseau dans `__DATA_DIR__/.config/UMS/debug.log` ou `/var/log/ums/ums.log`. Cherchez une ligne ressemblant à `Using address /192.168.0.54 found on network interface: name:enp0s3 (enp0s3)`. Le sous-réseau utilisé doit être le même que le renderer (ie : si votre TV est sur 192.168.0.X et ums sur 192.168.1.X, cela ne marchera pas)
 
-Sur de petits appareils (par exemple un raspberry), la transco peut demander trop de puissance, n'hésitez par à utiliser des transcodeur alternatifs.
+Sur de petits appareils (par exemple un raspberry), la transco peut demander trop de puissance, n'hésitez pas à utiliser des transcodeurs alternatifs.
