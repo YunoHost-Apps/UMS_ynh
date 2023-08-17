@@ -49,6 +49,14 @@ then
 		--target_file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
 fi
 
+#From packaging v1 to packaging v2 : "port_web" become "port". We need to handle this manually or 
+#the core go for a new port.
+if [ ! -z $(ynh_app_setting_get --app=$app --key=port_web) ]; then
+	port=$port_web
+	ynh_app_setting_delete --app=$app --key=port_web
+	ynh_app_setting_set --app=$app --key=port --value=$port
+fi
+
 #=================================================
 # STANDARD UPGRADE STEPS
 #=================================================
