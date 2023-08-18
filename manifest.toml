@@ -78,15 +78,16 @@ ram.runtime = "350M"
     rend.exposed = "TCP"
 
     [resources.system_user]
+    #UMS require a home path for the user as config files are stored in there
+    home = '/home/yunohost.app/__APP__'
 
     [resources.install_dir]
 
     [resources.data_dir]
-    dir = "/home/yunohost.app/__APP__"
-    subdirs = [ '.config', '.config/UMS' ]
 
     [resources.permissions]
     main.url = "/"
+    main.auth_header=false
 
     [resources.apt]
     packages = "mediainfo dcraw"
