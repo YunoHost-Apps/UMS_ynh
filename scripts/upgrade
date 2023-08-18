@@ -12,15 +12,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
 
-app=$YNH_APP_INSTANCE_NAME
-
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-port_web=$(ynh_app_setting_get --app=$app --key=port_web)
-port_rend=$(ynh_app_setting_get --app=$app --key=port_rend)
 upstream_version=$(ynh_app_upstream_version)
 
 #=================================================
@@ -28,20 +20,6 @@ upstream_version=$(ynh_app_upstream_version)
 #=================================================
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=10
-
-# Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
-	# Restore it if the upgrade fails
-	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
@@ -53,7 +31,7 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 if [ ! $(getent passwd $app | cut -d: -f6 | grep yunohost.app) ]
 then
 	ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
-	usermod -m -d /home/yunohost.app/$app $app
+	usermod -m -d $install_dir $app
 fi
 
 #10.17.0, 10.17.1 & 10.16.0 had a bug that overwrite the media path at startup of the service. 
@@ -63,12 +41,20 @@ current_version=$(ynh_app_upstream_version --manifest="/etc/yunohost/apps/$app/m
 if [ $current_version == "10.17.0" ] || [ $current_version == "10.16.0" ]
 then
 	ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
-	ynh_replace_string --match_string="folders =/opt/yunohost/$app,/home/yunohost.app/$app" \
+	ynh_replace_string --match_string="folders =/opt/yunohost/$app,$install_dir" \
 		--replace_string="folders=/home/yunohost.multimedia/share" \
 		--target_file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
-	ynh_replace_string --match_string="folders_monitored =/opt/yunohost/$app,/home/yunohost.app/$app" \
+	ynh_replace_string --match_string="folders_monitored =/opt/yunohost/$app,$install_dir" \
 		--replace_string="folders_monitored=/home/yunohost.multimedia/share" \
 		--target_file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
+fi
+
+#From packaging v1 to packaging v2 : "port_web" become "port". We need to handle this manually or 
+#the core go for a new port.
+if [ ! -z $(ynh_app_setting_get --app=$app --key=port_web) ]; then
+	port=$port_web
+	ynh_app_setting_delete --app=$app --key=port_web
+	ynh_app_setting_set --app=$app --key=port --value=$port
 fi
 
 #=================================================
@@ -87,8 +73,13 @@ ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
-	ynh_setup_source --dest_dir="$final_path" --source_id="$YNH_ARCH"
+	ynh_setup_source --dest_dir="$install_dir" 
 fi
+
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:$app "$install_dir"
+chown $app:$app "$install_dir/UMS.sh"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -96,68 +87,13 @@ fi
 ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=2
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config "port_web"
-
-#=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=4
-
-ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir=/home/yunohost.app/$app
-
-#=================================================
-# SPECIFIC UPGRADE
-#=================================================
-# ...
-#=================================================
-
-#Close unwanted open port in firewall
-if yunohost firewall list | grep -q "\- $port_web$"
-then
-	ynh_script_progression --message="Closing port $port_web as it shouldn't be open..."
-	yunohost firewall disallow TCP $port_web 2>&1
-fi
-
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Upgrading systemd configuration..." --weight=1
+ynh_add_nginx_config
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-
-# Set permissions on app files
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R root:$app "$final_path"
-chown root:$app "$final_path/UMS.sh"
-
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Upgrading logrotate configuration..." --weight=1
-
 # Use logrotate to manage app-specific logfile(s)
 ynh_use_logrotate --non-append
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=2
 
 yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server." --log=/var/log/$app/$app.log --needs_exposed_ports $port_rend
 
@@ -167,21 +103,6 @@ yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server."
 ynh_script_progression --message="Starting a systemd service..." --weight=2
 
 ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
-
-#=================================================
-# UPGRADE FAIL2BAN
-#=================================================
-#ynh_script_progression --message="Reconfiguring Fail2Ban..." --weight=1
-
-# Create a dedicated Fail2Ban config
-#ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
-
-ynh_systemd_action --service_name=nginx --action=reload
 
 #=================================================
 # END OF SCRIPT
