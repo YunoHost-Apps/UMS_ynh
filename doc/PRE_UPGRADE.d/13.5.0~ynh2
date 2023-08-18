@@ -1,0 +1,7 @@
+Changelog:
+
+News:
+- Package is now in v2
+
+Fixes:
+- it is now possible to log into the UMS webserver in case authentication is activated
