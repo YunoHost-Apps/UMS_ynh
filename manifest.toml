@@ -1,0 +1,93 @@
+packaging_format = 2
+
+id = "ums"
+name = "Universal Media Server"
+description.en = "A DLNA, UPnP and HTTP(S) Media Server"
+description.fr = "Un Serveur Multimedia DLNA, UPnP et HTTP(S)"
+
+version = "13.5.0~ynh2"
+
+maintainers = ["Krakinou"]
+
+[upstream]
+license = "GPL-2.0-or-later"
+website = "www.universalmediaserver.com"
+admindoc = "https://github.com/UniversalMediaServer/UniversalMediaServer/wiki"
+code = "https://github.com/UniversalMediaServer/UniversalMediaServer"
+
+[integration]
+yunohost = ">= 11.1.18"
+architectures = "all"
+multi_instance = false
+ldap = false
+sso = false
+disk = "270M"
+ram.build = "350M"
+ram.runtime = "350M"
+
+[install]
+    [install.domain]
+    help.en = "UMS require its own subdomain"
+    help.fr = "UMS a besoin de son propre sous-domaine"
+    type = "domain"
+
+    [install.init_main_permission]
+    help.en = "Everybody will be able to access your media on the internet without connecting to Yunohost"
+    help.fr = "Tout le monde pourra voir vos media sans se connecter à Yunohost"
+    type = "group"
+    default = "visitors"
+
+    [install.server_name]
+    ask.en = "By which name should UMS be identified by your renderer"
+    ask.fr = "Par quel nom UMS doit-il être identifié par vos appareils"
+    help.en = "This has no impact on the way the server will work and is only use to identify it on the network"
+    help.fr = "Ceci n a aucun impact sur le fonctionnement du serveur et sert uniquement à l identifier sur le réseau"
+    type = "string"
+    example = "MyUMS"
+    default = "UniversalMediaServer"
+
+    [install.interface]
+    ask.en = "Which network interface do you want to use?"
+    ask.fr = "Quel réseau souhaitez vous utiliser?"
+    help.en = "On lan, the interface is usually eth0, on wifi it s usually wlan0"
+    help.fr = "En filaire, l interface est souvent eth0, en wifi wlan0"
+    type = "string"
+    default = "eth0"
+
+[resources]
+        [resources.sources.main]
+        arm64.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.5.0/UMS-13.5.0-arm64.tgz"
+        arm64.sha256 = "b916a56a24e70d5454cbffdbd6140e4d20837f1187e6f6f437574c0244b100de"
+        amd64.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.5.0/UMS-13.5.0-x86_64.tgz"
+        amd64.sha256 = "1243c598fa2b3c4790399e7a13656b85fefefbe76c6332a38c7ae6bf15355c7b"
+        armhf.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.5.0/UMS-13.5.0-armhf.tgz"
+        armhf.sha256 = "ac00cf598c0e1b572416c289ec36bb1578993fdf45348faf70558be2ecedb12b"
+        i386.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/13.5.0/UMS-13.5.0-x86.tgz"
+        i386.sha256 = "4535f500d19916aaf4c4d88d8448e8363898fbec81fac250db95b585f9542b8d"
+
+        autoupdate.strategy = "latest_github_release"
+
+        autoupdate.asset.arm64 = "*-arm64.tgz"
+        autoupdate.asset.amd64 = "*-x86_64.tgz"
+        autoupdate.asset.armhf = "*-armhf.tgz"
+        autoupdate.asset.i386 = "*-x86.tgz"
+
+    [resources.ports]
+    main.default = 9001
+    rend.default = 5001
+    rend.exposed = "TCP"
+
+    [resources.system_user]
+    #UMS require a home path for the user as config files are stored in there
+    home = '/home/yunohost.app/__APP__'
+
+    [resources.install_dir]
+
+    [resources.data_dir]
+
+    [resources.permissions]
+    main.url = "/"
+    main.auth_header=false
+
+    [resources.apt]
+    packages = "mediainfo dcraw"
