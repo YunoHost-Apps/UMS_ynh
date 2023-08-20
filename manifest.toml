@@ -21,7 +21,7 @@ architectures = "all"
 multi_instance = false
 ldap = false
 sso = false
-disk = "270M"
+disk = "1G"
 ram.build = "350M"
 ram.runtime = "350M"
 
@@ -90,4 +90,4 @@ ram.runtime = "350M"
     main.auth_header=false
 
     [resources.apt]
-    packages = "mediainfo dcraw"
+    packages = "mediainfo dcraw mencoder mplayer vlc"
