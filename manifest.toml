@@ -67,10 +67,10 @@ ram.runtime = "350M"
 
         autoupdate.strategy = "latest_github_release"
 
-        autoupdate.asset.arm64 = "*-arm64.tgz"
-        autoupdate.asset.amd64 = "*-x86_64.tgz"
-        autoupdate.asset.armhf = "*-armhf.tgz"
-        autoupdate.asset.i386 = "*-x86.tgz"
+        autoupdate.asset.arm64 = ".*-arm64.tgz"
+        autoupdate.asset.amd64 = ".*-x86_64.tgz"
+        autoupdate.asset.armhf = ".*-armhf.tgz"
+        autoupdate.asset.i386 = ".*-x86.tgz"
 
     [resources.ports]
     main.default = 9001
