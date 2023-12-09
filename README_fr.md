@@ -30,6 +30,7 @@ Le programme stream ou transcode de nombreux formats média différents avec peu
 * Site officiel de l’app : <www.universalmediaserver.com>
 * Documentation officielle de l’admin : <https://github.com/UniversalMediaServer/UniversalMediaServer/wiki>
 * Dépôt de code officiel de l’app : <https://github.com/UniversalMediaServer/UniversalMediaServer>
+* YunoHost Store: <https://apps.yunohost.org/app/ums>
 * Signaler un bug : <https://github.com/YunoHost-Apps/ums_ynh/issues>
 
 ## Informations pour les développeurs
