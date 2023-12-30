@@ -1,5 +1,4 @@
 test_format = 1.0
 
 [default]
-    test_upgrade_from.fb78609.name = "13.5.0~ynh1"
-    test_upgrade_from.8e8e839.name = "13.4.1~ynh1"
+    test_upgrade_from.10d20b6.name = "13.8.0~ynh1"
