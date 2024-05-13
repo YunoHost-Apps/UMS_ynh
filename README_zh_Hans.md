@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Universal Media Server
+# YunoHost 上的 Universal Media Server
 
 [![集成程度](https://dash.yunohost.org/integration/ums.svg)](https://dash.yunohost.org/appci/app/ums) ![工作状态](https://ci-apps.yunohost.org/ci/badges/ums.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/ums.maintain.svg)
 
@@ -19,7 +19,7 @@
 Universal Media Server is a DLNA-compliant UPnP Media Server. It is capable of sharing video, audio and images between most modern devices.
 The program streams or transcodes many different media formats with little or no configuration. It is powered by FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviSynth, VLC and more, which combine to offer support for a wide range of media formats.
 
-**分发版本：** 13.10.0~ynh1
+**分发版本：** 13.10.1~ynh1
 
 ## 截图
 
