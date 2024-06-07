@@ -5,7 +5,7 @@ name = "Universal Media Server"
 description.en = "A DLNA, UPnP and HTTP(S) Media Server"
 description.fr = "Un Serveur Multimedia DLNA, UPnP et HTTP(S)"
 
-version = "14.0.0~ynh1"
+version = "14.0.2~ynh1"
 
 maintainers = ["Krakinou"]
 
@@ -56,14 +56,14 @@ ram.runtime = "350M"
 
 [resources]
         [resources.sources.main]
-        arm64.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/14.0.0/UMS-14.0.0-arm64.tgz"
-        arm64.sha256 = "0493c4363254b56fb1461717dc102bd606248012095e68f5d1e8d67929951d19"
-        amd64.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/14.0.0/UMS-14.0.0-x86_64.tgz"
-        amd64.sha256 = "36bb4e62f9b5ae4de03efb5be7a1f5012202130c30073635ccd7f455814b289b"
-        armhf.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/14.0.0/UMS-14.0.0-armhf.tgz"
-        armhf.sha256 = "edf83cb0112e929d5c659d0d094a1ed219dee2226a11b25fb38ecb8f9ccf9bb6"
-        i386.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/14.0.0/UMS-14.0.0-x86.tgz"
-        i386.sha256 = "17c1e9c9285490662302a1597ab46a8f4e438ff19b0237a38e0f83261567c95a"
+        arm64.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/14.0.2/UMS-14.0.2-arm64.tgz"
+        arm64.sha256 = "dd529a6f0427570ec992aae552c42f7dd5406c9711e310c942653080ac1c8605"
+        amd64.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/14.0.2/UMS-14.0.2-x86_64.tgz"
+        amd64.sha256 = "c50be9ef7b390e06e1d7b2a2071aa545073f69c24d26832c866b70b2c7fc11a3"
+        armhf.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/14.0.2/UMS-14.0.2-armhf.tgz"
+        armhf.sha256 = "0bf8266b3c2819e5aef732f87093217327a1bbb11d2755e61d6ec503c63dccb8"
+        i386.url = "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/14.0.2/UMS-14.0.2-x86.tgz"
+        i386.sha256 = "82779b55cd9572242c55e8fe876da8a4a0d9e40a7b2bced7f2fa1edda8a22e59"
 
         autoupdate.strategy = "latest_github_release"
 
