@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Universal Media Server YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/ums.svg)](https://dash.yunohost.org/appci/app/ums) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/ums.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/ums.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/ums.svg)](https://ci-apps.yunohost.org/ci/apps/ums/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/ums.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/ums.maintain.svg)
 
 [![Instalatu Universal Media Server YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=ums)
 
@@ -19,7 +19,7 @@ EZ editatu eskuz.
 Universal Media Server is a DLNA-compliant UPnP Media Server. It is capable of sharing video, audio and images between most modern devices.
 The program streams or transcodes many different media formats with little or no configuration. It is powered by FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviSynth, VLC and more, which combine to offer support for a wide range of media formats.
 
-**Paketatutako bertsioa:** 14.0.2~ynh1
+**Paketatutako bertsioa:** 14.1.0~ynh1
 
 ## Pantaila-argazkiak
 
