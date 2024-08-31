@@ -1,11 +1,5 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
@@ -16,96 +10,94 @@ source /usr/share/yunohost/helpers
 upstream_version=$(ynh_app_upstream_version)
 
 #=================================================
-# CHECK VERSION
-#=================================================
-
-upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+ynh_script_progression "Ensuring downward compatibility..."
 
 #move home folder from previous /home/app to /home/yunohost.app/$app
 #has to be after backup, otherwise backup will not find home folder and will fail
 if [ ! $(getent passwd $app | cut -d: -f6 | grep yunohost.app) ]
 then
-	ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
+	ynh_systemctl --service=$app --action="stop"
+
 	usermod -m -d $install_dir $app
 fi
 
-#10.17.0, 10.17.1 & 10.16.0 had a bug that overwrite the media path at startup of the service. 
+#10.17.0, 10.17.1 & 10.16.0 had a bug that overwrite the media path at startup of the service.
+
 #https://github.com/UniversalMediaServer/UniversalMediaServer/issues/2864
 #This will reinitialize it to /home/yunohost.multimedia/share
 current_version=$(ynh_app_upstream_version --manifest="/etc/yunohost/apps/$app/manifest.json")
 if [ $current_version == "10.17.0" ] || [ $current_version == "10.16.0" ]
 then
-	ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
-	ynh_replace_string --match_string="folders =/opt/yunohost/$app,$install_dir" \
-		--replace_string="folders=/home/yunohost.multimedia/share" \
-		--target_file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
-	ynh_replace_string --match_string="folders_monitored =/opt/yunohost/$app,$install_dir" \
-		--replace_string="folders_monitored=/home/yunohost.multimedia/share" \
-		--target_file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
+	ynh_systemctl --service=$app --action="stop"
+
+	ynh_replace --match="folders =/opt/yunohost/$app,$install_dir" \
+		--replace="folders=/home/yunohost.multimedia/share" \
+		--file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
+	ynh_replace --match="folders_monitored =/opt/yunohost/$app,$install_dir" \
+		--replace="folders_monitored=/home/yunohost.multimedia/share" \
+		--file="/home/yunohost.app/$app/.config/UMS/UMS.conf"
 fi
 
-#From packaging v1 to packaging v2 : "port_web" become "port". We need to handle this manually or 
+#From packaging v1 to packaging v2 : "port_web" become "port". We need to handle this manually or
+
 #the core go for a new port.
-if [ ! -z $(ynh_app_setting_get --app=$app --key=port_web) ]; then
+if [ ! -z $(ynh_app_setting_get --key=port_web) ]; then
 	port=$port_web
-	ynh_app_setting_delete --app=$app --key=port_web
-	ynh_app_setting_set --app=$app --key=port --value=$port
+	ynh_app_setting_delete --key=port_web
+	ynh_app_setting_set --key=port --value=$port
 fi
 
-#=================================================
-# STANDARD UPGRADE STEPS
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --weight=2
+ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app/$app.log"
+ynh_systemctl --service=$app --action="stop"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
+# FIXME: this is still supported but the recommendation is now to *always* re-setup the app sources wether or not the upstream sources changed
+if ynh_app_upstream_version_changed
 then
-	ynh_script_progression --message="Upgrading source files..." --weight=5
-	ynh_setup_source --dest_dir="$install_dir" 
+	ynh_script_progression "Upgrading source files..."
+	ynh_setup_source --dest_dir="$install_dir"
+
 fi
 
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R $app:$app "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod 750 "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chmod -R o-rwx "$install_dir"
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R $app:$app "$install_dir"
 chown $app:$app "$install_dir/UMS.sh"
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=2
+ynh_script_progression "Upgrading NGINX web server configuration..."
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
 # Create a dedicated systemd config
-ynh_add_systemd_config
+ynh_config_add_systemd
 
 # Use logrotate to manage app-specific logfile(s)
-ynh_use_logrotate --non-append
+ynh_config_add_logrotate
 
 yunohost service add $app --description="A DLNA, UPnP and HTTP(S) Media Server." --log=/var/log/$app/$app.log --needs_exposed_ports $port_rend
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=2
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
+ynh_systemctl --service=$app --action="start"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
