@@ -19,7 +19,7 @@ No se debe editar a mano.
 Universal Media Server is a DLNA-compliant UPnP Media Server. It is capable of sharing video, audio and images between most modern devices.
 The program streams or transcodes many different media formats with little or no configuration. It is powered by FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviSynth, VLC and more, which combine to offer support for a wide range of media formats.
 
-**Versión actual:** 14.3.0~ynh1
+**Versión actual:** 14.5.0~ynh1
 
 ## Capturas
 
@@ -35,7 +35,7 @@ The program streams or transcodes many different media formats with little or no
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/ums_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/ums_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
