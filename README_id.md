@@ -21,7 +21,7 @@ Ini TIDAK boleh diedit dengan tangan.
 Universal Media Server is a DLNA-compliant UPnP Media Server. It is capable of sharing video, audio and images between most modern devices.
 The program streams or transcodes many different media formats with little or no configuration. It is powered by FFmpeg, MediaInfo, OpenSubtitles, Crowdin, MEncoder, tsMuxeR, AviSynth, VLC and more, which combine to offer support for a wide range of media formats.
 
-**Versi terkirim:** 14.8.0~ynh1
+**Versi terkirim:** 14.9.0~ynh1
 
 ## Tangkapan Layar
 
